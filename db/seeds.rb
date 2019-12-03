@@ -6,13 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user_name_list = %w[Samuel Lora John Peter Greg Alice Clara]
-
-user_name_list.each do |name|
-  User.create(name: name, active: true)
-end
-
-organization_title_list = %w[HappyPet Anonymus MemeCult History]
+organization_title_list = %w[Readworms Anonymus MemeCult History]
 organization_title_list.each do |title|
   Organization.create(title: title)
+end
+
+user_name_list = %w[Peter Greg Alice Clara]
+user_name_list.each do |name|
+  User.create(name: name, active: true, organization_id: 1)
+end
+
+user_name_list = %w[Gregor, JD, Boris]
+user_name_list.each do |name|
+  User.create(name: name, active: false, organization_id: 2)
+end
+
+user_name_list = %w[Samuel Lora John]
+user_name_list.each do |name|
+  User.create(name: name, active: true, organization_id: 3)
+end
+
+user_name_list = %w[Pipin Frodo Gendalf]
+user_name_list.each do |name|
+  User.create(name: name, active: false, organization_id: 4)
 end
