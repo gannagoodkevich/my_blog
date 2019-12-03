@@ -11,3 +11,8 @@ user_name_list = %w[Samuel Lora John Peter Greg Alice Clara]
 user_name_list.each do |name|
   User.create(name: name, active: true)
 end
+
+organization_title_list = %w[HappyPet Anonymus MemeCult History]
+organization_title_list.each do |title|
+  Organization.create(title: title)
+end
