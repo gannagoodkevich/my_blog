@@ -11,4 +11,7 @@ class User < ApplicationRecord
   after_validation do
     puts "User object was validated"
   end
+
+  scope :active, -> { where(active: true) }
+  scope :unactive, -> { where(active: false) }
 end

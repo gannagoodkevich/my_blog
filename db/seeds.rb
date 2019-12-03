@@ -32,12 +32,18 @@ user_name_list.each do |name|
   User.create(name: name, active: false)
 end
 
-posts_content = ['It is said that they live in “cnocs” (hollow hills, in Irish), which are located in the “sidhe”. The “sidhe” are mounds where megalithic monuments are erected in many places on the island. There the fairies are ruled by a king or queen.',
-                 'For the Irish, the butterflies are a message of the fairies, a sign of metamorphosis of the spirits waiting to be reborn. Likewise, they represent journeys between worlds in search of knowledge.',
-                 'Reading Bulgakov’s satire of 1930s Stalinist Moscow helped me to see just how easy it is to mess up a nation psychologically. In the novel the devil and his retinue (which includes a wall-eyed loon and a talking cat) manipulate “the Master”, a writer, and Margarita, his muse. Simultaneously – because the narrative flits between two stories – Pontius Pilate condemns Christ to death in Jerusalem. ',
-                 'The Active Record way claims that intelligence belongs in your models, not in the database. As such, features such as triggers or constraints, which push some of that intelligence back into the database, are not heavily used.']
-
-Post.create(content: posts_content[0], status: 'inactive', user_id: 2)
-Post.create(content: posts_content[1], status: 'under_review', user_id: 5)
-Post.create(content: posts_content[2], status: 'active', user_id: 7)
-Post.create(content: posts_content[3], status: 'archived', user_id: 11)
+posts_content = ['It is said that they live in “cnocs” (hollow hills, in Irish), which are located in the “sidhe”.',
+                 'The “sidhe” are mounds where megalithic monuments are erected in many places on the island.',
+                 'There the fairies are ruled by a king or queen.',
+                 'For the Irish, the butterflies are a message of the fairies, a sign of metamorphosis of the spirits waiting to be reborn.',
+                 'Likewise, they represent journeys between worlds in search of knowledge.',
+                 'Reading Bulgakov’s satire of 1930s Stalinist Moscow helped me to see just how easy it is to mess up a nation psychologically.',
+                 'In the novel the devil and his retinue (which includes a wall-eyed loon and a talking cat) manipulate “the Master”, a writer, and Margarita, his muse.',
+                 'Simultaneously – because the narrative flits between two stories – Pontius Pilate condemns Christ to death in Jerusalem. ',
+                 'The Active Record way claims that intelligence belongs in your models, not in the database. As such, features such as triggers or constraints, which push some of that intelligence back into the database, are not heavily used.',
+                 'You could have my favourite face']
+i = 1
+posts_content.each do |post|
+  Post.create(content: post, status: 'inactive', user_id: i)
+  i += 1
+end

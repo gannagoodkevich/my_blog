@@ -1,0 +1,5 @@
+1. scope :active, -> { where(active: true) }
+2. scope :active, -> { where(active: false) }
+3. User.joins(:posts).pluck(:name, :content)
+4. User.joins(:posts).where(active: true).pluck(:name, :content)
+5. Post.all.size
