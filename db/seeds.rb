@@ -41,9 +41,9 @@ posts_content = ['It is said that they live in “cnocs” (hollow hills, in Iri
                  'In the novel the devil and his retinue (which includes a wall-eyed loon and a talking cat) manipulate “the Master”, a writer, and Margarita, his muse.',
                  'Simultaneously – because the narrative flits between two stories – Pontius Pilate condemns Christ to death in Jerusalem. ',
                  'The Active Record way claims that intelligence belongs in your models, not in the database. As such, features such as triggers or constraints, which push some of that intelligence back into the database, are not heavily used.',
-                 'You could have my favourite face']
+                 'AYou could have my favourite face']
 i = 1
 posts_content.each do |post|
-  Post.create(content: post, status: 'inactive', user_id: i)
+  Post.create(content: post, status: 'under_review', user_id: i)
   i += 1
 end

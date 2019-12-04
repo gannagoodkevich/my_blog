@@ -2,11 +2,19 @@ class Post < ApplicationRecord
   has_one :user
   validates :status, inclusion: { in: %w[inactive under_review active archived],
                                 message: "%{value} is not a valid status" }
+  after_destroy do
+    puts "Post object was destroyed"
+  end
+
   after_create do
     puts "Post object was created"
   end
 
   after_validation do
     puts "Post object was validated"
+  end
+
+  after_update do
+    puts "Post was updated!"
   end
 end
