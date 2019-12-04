@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_101201) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "title"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_101201) do
     t.string "name"
     t.boolean "active"
     t.integer "organization_id"
+    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

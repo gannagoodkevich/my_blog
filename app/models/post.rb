@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_one :user
-  validates :status, inclusion: { in: %w[inactive under_review active archived],
-                                message: "%{value} is not a valid status" }
+  enum status: %i[inactive under_review active archived]
+
   after_destroy do
     puts "Post object was destroyed"
   end

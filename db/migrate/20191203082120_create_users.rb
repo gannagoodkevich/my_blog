@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name
       t.boolean :active
       t.integer :organization_id
+      t.integer :post_id
 
       t.timestamps
     end
