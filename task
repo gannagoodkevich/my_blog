@@ -9,6 +9,10 @@
    Post.where(status: 'inactive').delete_all  # without callback
 9. Post.where(status: 'under_review').all.each { |post| post.update(status:  'active') }
 10. Post.where(id: 2).delete_all
-11. ???
+11. Organization.all.each do |org|
+          org.users.all.each do |user|
+            org.destroy unless user.posts.nil?
+           end
+        end
 12. User.create(name: "Hodvic", active: true, organization_id: Organization.create(title: "GreenSleeves").id)
 13. arr.each { |arr| Post.create(content: arr, status: "active", user_id: User.first.id)}
