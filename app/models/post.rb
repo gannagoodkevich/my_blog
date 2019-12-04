@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   has_one :user
+  has_many :images, as: :imageable
   enum status: %i[inactive under_review active archived]
 
   after_destroy do
