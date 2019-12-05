@@ -10,10 +10,6 @@
    Post.inactive.delete_all  # without callback
 9. Post.under_review.each { |post| post.update(status:  'active') }
 10. Post.find(2).delete_all
-11. Organization.all.each do |org|
-          org.users.all.each do |user|
-            org.destroy unless user.posts.nil?
-           end
-        end
+11. Post.all.each { |post| post.user.organization.destroy }
 12. User.create(name: "Hodvic", active: true, organization_id: Organization.create(title: "GreenSleeves").id)
 13. Post.add_posts_to_user(["Hello", "World"], 1)
