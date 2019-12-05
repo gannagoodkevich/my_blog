@@ -1,7 +1,7 @@
 1. User.active
 2. User.unactive
-3. User.include_posts.each { |user| puts user.inspect, user.posts.inspect }
-4. Post.join_active_users
+3. User.includes(:posts).each { |user| puts user.inspect, user.posts.inspect }
+4. Post.with_active_users
 5. Post.all.size
 6. Post.where("content LIKE 'A%'")
 7. Post.under_review_or_inactive

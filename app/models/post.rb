@@ -18,7 +18,7 @@ class Post < ApplicationRecord
     puts 'Post was updated!'
   end
 
-  scope :inactive, -> { where(status: 'inactive') }
-  scope :under_review_or_inactive, -> { where("status IN ('under_review', 'inactive')") }
-  scope :join_active_users, -> { joins(:user).where('active = true ') }
+  scope :under_review, -> { where(status: 'under_review') }
+  scope :under_review_or_inactive, -> { where(:status => ['under_review', 'inactive']) }
+  scope :with_active_users, -> { joins(:user).where('active = true ') }
 end
