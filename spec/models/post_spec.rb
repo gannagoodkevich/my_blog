@@ -4,7 +4,7 @@ RSpec.describe Post, type: :model do
 
   it { should validate_presence_of :content }
   it { should validate_presence_of :user_id }
-  it { should have_one(:user) }
+  it { should belong_to(:user) }
   it { should have_many(:images) }
 
 
@@ -20,35 +20,32 @@ RSpec.describe Post, type: :model do
                    'Simultaneously – because the narrative flits between two stories – Pontius Pilate condemns Christ to death in Jerusalem. ',
                    'The Active Record way claims that intelligence belongs in your models, not in the database. As such, features such as triggers or constraints, which push some of that intelligence back into the database, are not heavily used.',
                    'AYou could have my favourite face" }
-    let(:content_valid) { "Hello? World!" }
+    let(:content_valid) { 'Hello? World!' }
     it 'content is not valid' do
       post = Post.create(content: content_invalid)
-      puts post.content
       expect(post).to be_invalid
     end
 
     it 'content is not valid' do
       post = Post.create(content: content_valid)
-      puts post.content
       expect(post).to be_invalid
     end
 
     it 'content is not valid' do
       post = Post.create(content: content_valid, user_id: 2)
-      puts post.content
       expect(post).to be_valid
     end
   end
 
   describe 'writting to DB' do
-    let(:content_valid) { "Hello, World!" }
+    let(:content_valid) { 'Hello, World!' }
     before do
       @post = Post.create(content: content_valid, user_id: 2)
       puts @post.id
     end
 
     it 'content is written' do
-      expect(@post.content).to include("Hello, World!")
+      expect(@post.content).to include('Hello, World!')
     end
 
     it 'Post is written to DB' do
