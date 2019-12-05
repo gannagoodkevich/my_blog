@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_one :user
+  belongs_to :user
   validates :status, inclusion: { in: %w[inactive under_review active archived],
                                 message: "%{value} is not a valid status" }
   after_destroy do
@@ -17,4 +17,8 @@ class Post < ApplicationRecord
   after_update do
     puts "Post was updated!"
   end
+
+  scope :inactive, -> { where(status: 'inactive') }
+  scope :under_review, -> { where(status: 'under_review') }
+  scope :add_posts_to_user, ->(arr, id) { arr.each { |arr| Post.create(content: arr, status: "active", user_id: id) } }
 end

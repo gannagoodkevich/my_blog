@@ -1,6 +1,6 @@
 class Organization < ApplicationRecord
   has_many :users
-  validates_associated :users
+
   validates :title, presence: true, length: { maximum: 100 }
 
   after_create do
