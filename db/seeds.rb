@@ -49,3 +49,5 @@ posts_content.each do |post|
   Post.create(content: post, status: 'under_review', user_id: i)
   i += 1
 end
+
+Post.create(content: "MyPost", status: 'archived', user_id: 1)

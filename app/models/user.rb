@@ -12,4 +12,5 @@ class User < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :unactive, -> { where(active: false) }
+  scope :include_posts, -> { includes(:posts) }
 end
