@@ -11,6 +11,8 @@ organization_title_list.each do |title|
   Organization.create(title: title)
 end
 
+Organization.create(title: "LastTry")
+
 user_name_list = %w[Peter Greg Alice Clara]
 user_name_list.each do |name|
   User.create(name: name, active: true, organization_id: 1)
@@ -47,3 +49,5 @@ posts_content.each do |post|
   Post.create(content: post, status: 'under_review', user_id: i)
   i += 1
 end
+
+Post.create(content: "MyPost", status: 'archived', user_id: 1)
