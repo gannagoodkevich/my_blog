@@ -2,8 +2,6 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :images, as: :imageable
   enum status: %i[inactive under_review active archived]
-  validates :content, presence: true, length: { maximum: 200 }
-  validates :user_id, presence: true
 
   after_destroy do
     puts "Post object was destroyed"
@@ -23,5 +21,6 @@ class Post < ApplicationRecord
 
   scope :inactive, -> { where(status: 'inactive') }
   scope :under_review, -> { where(status: 'under_review') }
-  scope :add_posts_to_user, ->(arr, id) { arr.each { |arr| Post.create(content: arr, status: "active", user_id: id) } }
+  scope :under_review_or_inactive, -> { where(:status => ['under_review', 'inactive']) }
+  scope :with_active_users, -> { joins(:user).where('active = true ') }
 end
