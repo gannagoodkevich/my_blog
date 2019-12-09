@@ -1,0 +1,27 @@
+<div class="row">
+
+  <div class="col-sm-3"></div>
+  <div class="col-sm-7">
+    <h1><%=@organization.title %></h1>
+  </div>
+  <div class="col-sm-2"></div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-7">
+      <% Post.all.each do |post| %>
+        <% if post.user.organization.title == @organization.title%>
+            <h3><%= "Post" %></h3>
+            <h4><%= post.content %></h4>
+        <div class="row">
+          <div class="col-sm-6"><h5><%= post.user.name%></h5></div>
+          <div class="col-sm-6"><h5><%= post.under_review?%></h5></div>
+        </div>
+        <% end %>
+      <% end %>
+  </div>
+  <div class="col-sm-2"></div>
+</div>

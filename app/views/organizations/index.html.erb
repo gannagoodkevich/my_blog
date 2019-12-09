@@ -20,7 +20,7 @@
       <% @organizations.each do |org| %>
         <tr>
           <td><%= org.title %></td>
-          <td><button type="button" class="btn btn-info"><%= "Posts" %></button></td>
+          <td><button type="button" class="btn btn-info"><%= link_to "Posts", organization_path(org) %></button></td>
           <td><button type="button" class="btn btn-info"><%= "Users" %></button></td>
         </tr>
       <% end %>
