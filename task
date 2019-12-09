@@ -12,3 +12,7 @@
 11. Post.all.each { |post| post.user.organization.destroy }
 12. User.create(name: "Hodvic", active: true, organization_id: Organization.create(title: "GreenSleeves").id)
 13. arr.each { |arr| User.first.posts << Post.create(content: arr, status: 'archived') }
+14. Post.first.active!
+15. Post.first.under_review?
+16. Post.archived
+17. User.first.posts.active
