@@ -1,0 +1,30 @@
+<div class="row">
+
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <h1>Listing organizations</h1>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+<div class="row"><p></p></div>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <table class="table table-striped">
+      <tr>
+        <th>Title</th>
+        <th>Posts</th>
+        <th>Users</th>
+      </tr>
+
+      <% @organizations.each do |org| %>
+        <tr>
+          <td><%= org.title %></td>
+          <td><button type="button" class="btn btn-info"><%= "Posts" %></button></td>
+          <td><button type="button" class="btn btn-info"><%= "Users" %></button></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
