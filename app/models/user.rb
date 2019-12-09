@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   belongs_to :organization
   has_many :posts
+  has_many :images, as: :imageable
+
   validates :name, presence: true, length: { maximum: 50 }
   after_create do
     puts "User object was created"

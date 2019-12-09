@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_03_101201) do
+ActiveRecord::Schema.define(version: 2019_12_04_112022) do
+
+  create_table "images", force: :cascade do |t|
+    t.string "file_name"
+    t.string "imageable_type", null: false
+    t.integer "imageable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "title"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -30,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_101201) do
     t.string "name"
     t.boolean "active"
     t.integer "organization_id"
+    t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
