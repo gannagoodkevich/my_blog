@@ -1,27 +1,93 @@
-<div class="row">
 
-  <div class="col-sm-3"></div>
-  <div class="col-sm-7">
-    <h1><%=@organization.title %></h1>
+<% content_for :title do %>
+  <%= @organization.title%>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <h3>Status</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <%= form_tag(organization_path(@organization), method: "get") do %>
+          <p>
+            <%= check_box_tag(:active) %>
+            <%= label_tag(:active, "active") %>
+          </p>
+          <p>
+            <%= check_box_tag(:inactive) %>
+            <%= label_tag(:inactive, "inactive") %>
+          </p>
+          <p>
+            <%= check_box_tag(:under_review) %>
+            <%= label_tag(:under_review, "under_review") %>
+          </p>
+          <p>
+            <%= check_box_tag(:archived) %>
+            <%= label_tag(:archived, "archived") %>
+          </p>
+        <p>
+          <div class="col-sm-1"><%= button_to organization_path(@organization), method: "get", class: "btn btn-info" do%>
+              Filter
+            <%end %></div>
+        </p>
+          <%end %>
+      </div>
+    </div>
   </div>
-  <div class="col-sm-2"></div>
-</div>
-
-
-
-<div class="row">
-  <div class="col-sm-3"></div>
-  <div class="col-sm-7">
-      <% Post.all.each do |post| %>
-        <% if post.user.organization.title == @organization.title%>
-            <h3><%= "Post" %></h3>
-            <h4><%= post.content %></h4>
-        <div class="row">
-          <div class="col-sm-6"><h5><%= post.user.name%></h5></div>
-          <div class="col-sm-6"><h5><%= post.under_review?%></h5></div>
-        </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1> <%= @organization.title%></h1>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10">
+        <%@posts = [] %>
+        <%if params[:active]%>
+          <% @posts = Post.active%>
+        <%end %>
+        <%if params[:inactive]%>
+          <% @posts = Post.inactive%>
+        <%end %>
+        <%if params[:under_review]%>
+          <% @posts = Post.under_review%>
+        <%end %>
+        <%if params[:archived]%>
+          <% @posts = Post.archived%>
+        <%end %>
+        <% @posts.each do |post| %>
+          <% if post.user.organization.title == @organization.title%>
+            <div class="row">
+              <div class="col-sm-12" style="background-color:#63c0de"></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12"><h3><%= post.content %></h3></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6"><h4>Posted by: <%= post.user.name%></h4></div>
+              <div class="col-sm-5"><h4>Status: <%= post.under_review?%></h4></div>
+              <div class="col-sm-1"><%= button_to "https://google.com", method: "get", class: "btn btn-info" do%>
+                  Edit
+                <%end %></div>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+
+    </div>
   </div>
-  <div class="col-sm-2"></div>
+  <div class="col-sm-2">
+    <div class="col-sm-1"><%= button_to "https://google.com", method: "get", class: "btn btn-info" do%>
+        Create post
+      <%end %></div>
+  </div>
 </div>
+
+

@@ -46,7 +46,7 @@ posts_content = ['It is said that they live in “cnocs” (hollow hills, in Iri
                  'AYou could have my favourite face']
 i = 1
 posts_content.each do |post|
-  Post.create(content: post, status: 'under_review', user_id: i)
+  Post.create(content: post, status: 'active', user_id: i)
   i += 1
 end
 
