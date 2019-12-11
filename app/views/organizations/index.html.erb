@@ -16,18 +16,20 @@
         <th>Posts</th>
         <th>Users</th>
       </tr>
-
       <% @organizations.each do |org| %>
         <tr>
           <td><%= org.title %></td>
-          <td><%= button_to organization_path(org), method: "get", class: "btn btn-info" do%>
+          <td><%= button_to organization_posts_path(org), method: "get", class: "btn btn-info" do%>
               Posts
             <%end %>
           </td>
-          <td><button type="button" class="btn btn-info"><%= "Users" %></button></td>
+          <td><%= button_to organization_users_path(org), method: "get", class: "btn btn-info" do%>
+            Users
+      <%end %></td>
         </tr>
       <% end %>
     </table>
+    <%= paginate @organizations, window: 2%>
   </div>
   <div class="col-sm-3"></div>
 </div>
