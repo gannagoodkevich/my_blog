@@ -1,0 +1,105 @@
+<% content_for :title do %>
+  <%= Organization.find(params[:organization_id]).title %>
+<% end %>
+
+<%= params.inspect %>
+
+<% @organization = Organization.find(params[:organization_id]) %>
+
+<div class="row">
+  <div class="col-sm-2">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <h3>Status</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <%= form_tag(organization_posts_path(@organization), method: "get") do %>
+          <p>
+            <%= check_box_tag(:active) %>
+            <%= label_tag(:active, "active") %>
+          </p>
+          <p>
+            <%= check_box_tag(:inactive) %>
+            <%= label_tag(:inactive, "inactive") %>
+          </p>
+          <p>
+            <%= check_box_tag(:under_review) %>
+            <%= label_tag(:under_review, "under_review") %>
+          </p>
+          <p>
+            <%= check_box_tag(:archived) %>
+            <%= label_tag(:archived, "archived") %>
+          </p>
+          <p>
+          <div class="col-sm-1"><%= button_to organization_posts_path(@organization), method: "get", class: "btn btn-info" do%>
+              Filter
+            <%end %></div>
+          </p>
+        <%end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-8">
+        <h1> <%= @organization.title%></h1>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10">
+        <%@post_status = @posts.active %>
+        <% @status = :active%>
+        <%if params[:active]%>
+          <% @post_status = @posts.active%>
+          <% @status = :active%>
+        <%end %>
+        <%if params[:inactive]%>
+          <% @post_status = @posts.inactive%>
+          <% @status = :inactive%>
+        <%end %>
+        <%if params[:under_review]%>
+          <% @post_status = @posts.under_review%>
+          <% @status = :under_review%>
+        <%end %>
+        <%if params[:archived]%>
+          <% @post_status = @posts.archived%>
+          <% @status = :archived%>
+        <%end %>
+        <% @post_status.each do |post| %>
+            <div class="row">
+              <div class="col-sm-12" style="background-color:#63c0de"></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12"><h3><%= post.content %></h3></div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6"><h4>Posted by: <%= link_to post.user.name, organization_user_path(@organization, post.user)%></h4></div>
+              <div class="col-sm-5"><h4>Status: <%= @status %></h4></div>
+              <div class="col-sm-1"><%= button_to edit_organization_post_path(@organization, post), method: "get", class: "btn btn-info" do%>
+                  Edit
+                <%end %></div>
+            </div>
+          <p></p>
+
+        <% end %>
+        <%= paginate @post_status, window: 2%>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <div class="col-sm-1"><%= button_to new_organization_post_path(@organization), method: "get", class: "btn btn-info" do%>
+        Create post
+      <%end %></div>
+  </div>
+</div>
+
+
+
+
+

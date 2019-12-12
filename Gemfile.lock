@@ -74,6 +74,9 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
+    bootstrap_form (4.3.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
     builder (3.2.3)
@@ -266,6 +269,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (= 1.4.4)
   bootstrap-sass
+  bootstrap_form
   bootswatch-rails
   byebug (= 11.0.1)
   capybara (= 3.28.0)

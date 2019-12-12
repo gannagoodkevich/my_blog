@@ -10,6 +10,7 @@ gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.4', require: false
 gem 'bootswatch-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
