@@ -24,6 +24,8 @@ group :development do
   gem 'spring-watcher-listen', '2.0.1'
   gem 'simple_form'
   gem 'kaminari'
+  gem 'rails_bootstrap_navbar'
+  gem 'jquery-rails'
 end
 
 group :test do

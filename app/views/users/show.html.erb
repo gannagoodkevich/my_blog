@@ -26,15 +26,16 @@
           inactive
         <%end %>
       </h3>
-        <%= button_to organization_user_path(Organization.find(params[:organization_id]), @user), method: "get", class: "btn btn-info" do%>
-          <%if @user.active %>
-            Deactivate
-            <% @user.update(active: false )%>
+          <%=button_to  organization_user_path, method: :put, class: "btn btn-info" , params: { button: {active: !@user.active} } do%>
+            <%if @user.active %>
+              Deactivate
+
             <%else %>
-            Activate
-            <% @user.update(active: true )%>
+              Activate
+
             <%end %>
-        <%end %>
+          <%end %>
+          </p>
       </div>
     </div>
   </div>
@@ -85,7 +86,7 @@
   <div class="col-sm-7">
     <div class="col-sm-1"></div>
     <div class="col-sm-11"><%= button_to "https://google.com", method: "get", class: "btn btn-info" do%>
-        Create post
+        Create user
       <%end %></div>
   </div>
 </div>

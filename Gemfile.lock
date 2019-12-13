@@ -71,6 +71,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
+    bootstrap-navbar (3.0.5)
+      gem_config (~> 0.3)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
@@ -97,12 +99,17 @@ GEM
     erubi (1.9.0)
     execjs (2.7.0)
     ffi (1.11.3)
+    gem_config (0.3.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    jquery-rails (4.3.5)
+      rails-dom-testing (>= 1, < 3)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -164,6 +171,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails_bootstrap_navbar (3.0.0)
+      bootstrap-navbar (~> 3.0)
+      rails (>= 3.0.0)
     rails_current (2.1.0)
       map (~> 6.0)
     rails_default_url_options (5.0.0)
@@ -274,11 +284,13 @@ DEPENDENCIES
   byebug (= 11.0.1)
   capybara (= 3.28.0)
   jbuilder (= 2.9.1)
+  jquery-rails
   kaminari
   listen (= 3.1.5)
   pg (= 1.1.4)
   puma (= 3.12.1)
   rails (= 6.0.1)
+  rails_bootstrap_navbar
   rails_helper
   rspec
   rspec-rails

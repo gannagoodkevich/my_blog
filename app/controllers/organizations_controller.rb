@@ -4,7 +4,10 @@ class OrganizationsController < ApplicationController
   end
 
   def new
+  end
 
+  def update
+    @organization.update(params[:organization])
   end
 
   def create

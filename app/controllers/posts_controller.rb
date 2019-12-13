@@ -10,24 +10,33 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    render plain: params.inspect
   end
 
   def create
     @organization = Organization.find(params[:organization_id])
-    name = params[:post][:name]
-    @post = Post.new(post_attr)
-    User.find_by(name: name).posts << @post
+    @post = Post.new(content: params[:post][:content], status: params[:post][:status], user_id: User.find_by(name: params[:post][:name]).id)
+    @post.save!
+    User.find_by(name: params[:post][:name]).posts << @post
+    User.find_by(name: params[:post][:name]).save!
     redirect_to organization_posts_path(@organization)
   end
 
   def update
     @post = Post.find(params[:id])
-    #render plain: @post.inspect
-    #@post.update!(post_attr)
-    render plain: params.inspect
+    @user_prev = User.find(@post.user_id)
     @post.update!(content: params[:post][:content], status: params[:post][:status])
-    #redirect_to organization_posts_path(@organization)
+    @user = User.find_by(name: params[:post][:name])
+    @user.posts << @post
+    @organization = Organization.find(params[:organization_id])
+    redirect_to organization_posts_path(@organization)
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy!
+
+    @organization = Organization.find(params[:organization_id])
+    redirect_to organization_posts_path(@organization)
   end
 
   private
