@@ -11,7 +11,7 @@ organization_title_list.each do |title|
   Organization.create(title: title)
 end
 
-Organization.create(title: "LastTry")
+Organization.create(title: "Georgians")
 
 user_name_list = %w[Peter Greg Alice Clara]
 user_name_list.each do |name|
@@ -31,7 +31,7 @@ end
 
 user_name_list = %w[Pipin Frodo Gendalf]
 user_name_list.each do |name|
-  User.create(name: name, active: false)
+  User.create(name: name, active: true)
 end
 
 posts_content = ['It is said that they live in “cnocs” (hollow hills, in Irish), which are located in the “sidhe”.',

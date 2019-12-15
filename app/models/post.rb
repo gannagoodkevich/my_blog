@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  paginates_per 2
+  paginates_per 20
   belongs_to :user
   has_many :images, as: :imageable
   enum status: { inactive: 1, under_review: 2, active: 3, archived: 4 }

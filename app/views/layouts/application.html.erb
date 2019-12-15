@@ -11,33 +11,25 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-inverse">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        hhhhh
-      </div>
-
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><%= link_to('', '#') %>UAAAA</li>
-          <li><%= link_to('', '#') %>UBBBB</li>
-          <li><%= link_to('', '#') %>UCCCC</li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-
-            <li>лтлдж</li>
-            <li>adfs</li>
-
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div><!--/.container-fluid -->
-  </nav>
-    <%= yield %>
+    <nav class="navbar navbar-inverse">
+ <div class="container-fluid">
+   <div class="navbar-header">
+     <a class="navbar-brand" href="http://localhost:3000/organizations">Main Page</a>
+   </div>
+   <ul class="nav navbar-nav">
+     <li class="dropdown">
+       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Organizations
+       <span class="caret"></span></a>
+       <ul class="dropdown-menu">
+         <li><a href="#">Page 1-1</a></li>
+         <li><a href="#">Page 1-2</a></li>
+         <li><a href="#">Page 1-3</a></li>
+       </ul>
+     </li>
+   </ul>
+   <button class="btn btn-info navbar-btn">EN/RU</button>
+ </div>
+</nav>
+  <%= yield %>
   </body>
 </html>

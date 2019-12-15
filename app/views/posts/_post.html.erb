@@ -1,0 +1,28 @@
+<% post_status.each do |post| %>
+<%if Post.active.include? post %>
+  <% @status = :active%>
+<%end %>
+<%if Post.inactive.include? post%>
+  <% @status = :inactive%>
+<%end %>
+<%if Post.under_review.include? post%>
+  <% @status = :under_review%>
+<%end %>
+<%if Post.archived.include? post%>
+  <% @status = :archived%>
+<%end %>
+    <div class="row">
+      <div class="col-sm-12" style="background-color:#63c0de"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12"><h3><%= post.content %></h3></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6"><h4>Posted by: <%= link_to post.user.name, organization_user_path(Organization.find(params[:organization_id]), post.user)%></h4></div>
+      <div class="col-sm-5"><h4>Status: <%= @status %></h4></div>
+      <div class="col-sm-1"><%= button_to edit_organization_post_path(Organization.find(params[:organization_id]), post), method: "get", class: "btn btn-info" do%>
+          Edit
+        <%end %></div>
+    </div>
+  <p></p>
+<% end %>

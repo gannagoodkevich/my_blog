@@ -1,0 +1,23 @@
+<%= form_tag(organization_posts_path(@organization), method: "get") do %>
+  <p>
+    <%= check_box_tag(:active) %>
+    <%= label_tag(:active, "active") %>
+  </p>
+  <p>
+    <%= check_box_tag(:inactive) %>
+    <%= label_tag(:inactive, "inactive") %>
+  </p>
+  <p>
+    <%= check_box_tag(:under_review) %>
+    <%= label_tag(:under_review, "under_review") %>
+  </p>
+  <p>
+    <%= check_box_tag(:archived) %>
+    <%= label_tag(:archived, "archived") %>
+  </p>
+  <p>
+  <div class="col-sm-1"><%= button_to organization_posts_path(@organization), method: "get", class: "btn btn-info" do%>
+      Filter
+    <%end %></div>
+  </p>
+<%end%>

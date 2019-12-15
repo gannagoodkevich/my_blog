@@ -26,6 +26,7 @@ group :development do
   gem 'kaminari'
   gem 'rails_bootstrap_navbar'
   gem 'jquery-rails'
+  gem 'jquery-turbolinks'
 end
 
 group :test do
