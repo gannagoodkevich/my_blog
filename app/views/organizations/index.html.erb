@@ -6,7 +6,7 @@
 
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1>Listing organizations</h1>
+    <h1><%= t :lists %></h1>
   </div>
   <div class="col-sm-3"></div>
 </div>
@@ -16,19 +16,19 @@
   <div class="col-sm-6">
     <table class="table table-striped">
       <tr>
-        <th>Title</th>
-        <th>Posts</th>
-        <th>Users</th>
+        <th><%= t :title %></th>
+        <th><%= t :posts %></th>
+        <th><%= t :users %></th>
       </tr>
       <% @organizations.each do |org| %>
         <tr>
           <td><%= org.title %></td>
           <td><%= button_to organization_posts_path(org), method: "get", class: "btn btn-info" do%>
-              Posts
+              <%= t :posts %>
             <%end %>
           </td>
           <td><%= button_to organization_users_path(org), method: "get", class: "btn btn-info" do%>
-            Users
+              <%= t :users %>
       <%end %></td>
         </tr>
       <% end %>

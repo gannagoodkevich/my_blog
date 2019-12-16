@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  paginates_per 2
+  paginates_per 20
   belongs_to :organization
   has_many :posts
   has_many :images, as: :imageable

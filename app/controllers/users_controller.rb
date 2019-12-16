@@ -10,6 +10,10 @@ class UsersController < ApplicationController
   end
 
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def create
     @organization = Organization.find(params[:organization_id])
     @user = User.new(name: params[:user][:name], active: params[:user][:status], organization_id: params[:organization_id])
@@ -25,7 +29,7 @@ class UsersController < ApplicationController
     @user.update!(active: params[:button][:active])
     #User.find_by(name: params[:post][:name]).posts << @post
     #User.find_by(name: params[:post][:name]).save!
-    redirect_to organization_users_path(@organization)
+    redirect_to organization_user_path
   end
 
   def show

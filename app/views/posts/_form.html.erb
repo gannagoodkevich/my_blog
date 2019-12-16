@@ -1,0 +1,17 @@
+<%= bootstrap_form_with model: post, url: organization_posts_path, method: :post, local: true do |form| %>
+  <p>
+    <%= form.select(:name, users.collect{|u| u.name}, label: t(:name))%>
+  </p>
+
+  <p>
+    <%= form.text_area :content, label: t(:content)%>
+  </p>
+
+  <p>
+    <%= form.collection_select(:status, Post.statuses, :first, :first, label: t(:status))%>
+  </p>
+
+  <p>
+    <%= form.submit class: "btn btn-info", label: "OK"%>
+  </p>
+<% end %>

@@ -1,0 +1,13 @@
+<%= bootstrap_form_with scope: :user, url: organization_users_path, local: true do |form| %>
+  <p>
+    <%= form.text_field :name, label: t(:name)%>
+  </p>
+
+  <p>
+    <%= form.collection_select(:status, [["active", true], ["inactive", false]], :last, :first, label: t(:status))%>
+  </p>
+
+  <p>
+    <%= form.submit class: "btn btn-info"%>
+  </p>
+<% end %>
