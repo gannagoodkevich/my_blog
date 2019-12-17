@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: post, url: organization_posts_path, method: :post, local: true do |form| %>
+<%= bootstrap_form_with model: post, url: my_url, local: true do |form| %>
   <p>
     <%= form.select(:name, users.collect{|u| u.name}, label: t(:name))%>
   </p>
