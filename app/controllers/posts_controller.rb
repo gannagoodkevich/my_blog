@@ -24,9 +24,10 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @user_prev = User.find(@post.user_id)
-    @post.update!(content: params[:post][:content], status: params[:post][:status])
     @user = User.find_by(name: params[:post][:name])
     @user.posts << @post
+    @user.save!
+    @post.update!(content: params[:post][:content], status: params[:post][:status], user_id: @user.id)
     @organization = Organization.find(params[:organization_id])
     redirect_to organization_posts_path(@organization)
   end

@@ -8,7 +8,7 @@
 
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1><%= @organization.title %>: <%= t :update_post %></h1>
+    <h1><%= @organization.title %>: create post</h1>
   </div>
   <div class="col-sm-3"></div>
 </div>
@@ -16,11 +16,27 @@
 <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <%= render partial: "posts/form", locals: {post: @post, users: @organization.users} %>
+    <%= bootstrap_form_with model: @post, url: organization_post_url, local: true do |form| %>
+      <p>
+        <%= form.select(:name, @organization.users.all.collect{|u| u.name} )%>
+      </p>
+
+      <p>
+        <%= form.text_area :content%>
+      </p>
+
+      <p>
+        <%= form.collection_select(:status, Post.statuses, :first, :first)%>
+      </p>
+
+      <p>
+        <%= form.submit class: "btn btn-info"%>
+      </p>
+    <% end %>
   </div>
   <div class="col-sm-3">
-    <%= button_to t(:destroy), organization_post_path(@organization, @post),
-                method: :delete,
-                data: { confirm: 'Are you sure?' }, class:  "btn btn-danger"%>
+    <%= button_to 'Destroy', organization_post_path(@organization, @post),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }, class:  "btn btn-danger"%>
   </div>
 </div>
