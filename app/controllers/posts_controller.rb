@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.joins(:user).where(users: {organization_id: params[:organization_id], active: true})
+    @posts = PostsQuery.new.find_active_users_post(params[:organization_id])
     @posts = @posts.page params[:page]
   end
 
