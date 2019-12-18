@@ -11,27 +11,33 @@ organization_title_list.each do |title|
   Organization.create(title: title)
 end
 
-Organization.create(title: "Georgians")
+Organization.create(title: 'Georgians')
 
-user_name_list = %w[Peter Greg Alice Clara]
-user_name_list.each do |name|
-  User.create(name: name, active: true, organization_id: 1)
-end
+ActiveRecord::Base.transaction do
+  user_name_list = %w[Peter Greg Alice Clara]
+  user_name_list.each do |name|
+    User.create!(name: name, active: true, organization_id: 1)
+  end
 
-user_name_list = %w[Gregor JD Boris]
-user_name_list.each do |name|
-  u = User.create(name: name, active: false, organization_id: 2)
-  puts u.errors.full_messages
-end
+  user_name_list = %w[Gregor JD Boris]
+  user_name_list.each do |name|
+    u = User.create!(name: name, active: false, organization_id: 2)
+    puts u.errors.full_messages
+  end
 
-user_name_list = %w[Samuel Lora John]
-user_name_list.each do |name|
-  User.create(name: name, active: true, organization_id: 3)
-end
+  user_name_list = %w[Samuel Lora John]
+  user_name_list.each do |name|
+    User.create!(name: name, active: true, organization_id: 3)
+  end
 
-user_name_list = %w[Pipin Frodo Gendalf]
-user_name_list.each do |name|
-  User.create(name: name, active: true)
+  user_name_list = %w[Pipin Frodo Gendalf]
+  user_name_list.each do |name|
+    User.transaction do
+      User.create!(name: name, active: true)
+      rescue ActiveRecord::RecordInvalid
+        puts 'Oops. Error occurred in a subtransaction!'
+    end
+  end
 end
 
 posts_content = ['It is said that they live in “cnocs” (hollow hills, in Irish), which are located in the “sidhe”.',
@@ -44,10 +50,14 @@ posts_content = ['It is said that they live in “cnocs” (hollow hills, in Iri
                  'Simultaneously – because the narrative flits between two stories – Pontius Pilate condemns Christ to death in Jerusalem. ',
                  'The Active Record way claims that intelligence belongs in your models, not in the database. As such, features such as triggers or constraints, which push some of that intelligence back into the database, are not heavily used.',
                  'AYou could have my favourite face']
-i = 1
-posts_content.each do |post|
-  Post.create(content: post, status: 'active', user_id: i)
-  i += 1
-end
 
-Post.create(content: "MyPost", status: 'archived', user_id: 1)
+Post.create(content: 'MyPost', status: 'archived', user_id: 1)
+
+ActiveRecord::Base.transaction do
+  i = 1
+  posts_content.each do |post|
+    Post.create!(content: post, status: 'active', user_id: i)
+    i += 1
+    raise ActiveRecord::Rollback if i == 4
+  end
+end
