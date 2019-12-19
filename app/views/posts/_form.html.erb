@@ -1,7 +1,7 @@
 <%= bootstrap_form_with model: post, url: my_url, local: true do |form| %>
   <%defoult_name = Organization.find(params[:organization_id]).users.first%>
   <%defoult_status = Post.statuses.first%>
-  <%unless post.user.nil? %>
+  <%unless post.user.nil?%>
     <%defoult_name = post.user.name%>
   <%end %>
   <%if Post.active.include? post %>
@@ -17,7 +17,7 @@
     <% defoult_status = :archived%>
   <%end %>
   <p>
-    <%= form.select(:name, users.collect{|u| u.name}, label: t(:name), :selected => defoult_name)%>
+    <%= form.collection_select(:id, users, :id, :name, {:selected => defoult_name})%>
   </p>
 
   <p>

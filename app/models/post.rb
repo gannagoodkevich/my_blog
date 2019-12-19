@@ -26,5 +26,5 @@ class Post < ApplicationRecord
   scope :inactive, -> { where(status: 'inactive') }
   scope :under_review, -> { where(status: 'under_review') }
   scope :under_review_or_inactive, -> { where(:status => ['under_review', 'inactive']) }
-  scope :with_active_users, -> { joins(:user).where('active = true ') }
+  scope :with_active_users, ->(organization_id) { joins(:user).where(users: {organization_id: organization_id, active: true}) }
 end
