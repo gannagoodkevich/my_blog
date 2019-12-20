@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.with_active_users(params[:organization_id])
-    @posts = @posts.page params[:page]
+    @posts = @posts.page(params[:page])
   end
 
   def new
@@ -14,13 +14,12 @@ class PostsController < ApplicationController
 
   def create
     @organization = Organization.find(params[:organization_id])
-    User.find(params[:post][:id]).posts.create!(content: params[:post][:content], status: params[:post][:status])
+    User.find(params[:post][:user_id]).posts.create!(post_attr)
     redirect_to organization_posts_path(@organization)
   end
 
   def update
-    @post = Post.find(params[:id])
-    @post.update!(content: params[:post][:content], status: params[:post][:status], user_id: params[:post][:id])
+    Post.find_by(id: params[:id]).update!(post_attr)
     @organization = Organization.find(params[:organization_id])
     redirect_to organization_posts_path(@organization)
   end
@@ -36,6 +35,6 @@ class PostsController < ApplicationController
   private
 
   def post_attr
-    params.require(:post).permit(:content, :status)
+    params.require(:post).permit(:content, :status, :user_id)
   end
 end

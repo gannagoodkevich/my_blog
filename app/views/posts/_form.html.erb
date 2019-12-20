@@ -2,7 +2,7 @@
   <%defoult_name = Organization.find(params[:organization_id]).users.first%>
   <%defoult_status = Post.statuses.first%>
   <%unless post.user.nil?%>
-    <%defoult_name = post.user.name%>
+    <%defoult_name = post.user.id%>
   <%end %>
   <%if Post.active.include? post %>
     <% defoult_status = :active%>
@@ -17,7 +17,7 @@
     <% defoult_status = :archived%>
   <%end %>
   <p>
-    <%= form.collection_select(:id, users, :id, :name, {:selected => defoult_name})%>
+    <%= form.collection_select(:user_id, users, :id, :name, :selected => defoult_name)%>
   </p>
 
   <p>
