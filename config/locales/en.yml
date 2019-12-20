@@ -30,22 +30,26 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  title: "Title"
-  posts: "Posts"
-  users: "Users"
-  lists: "Listing organizations"
-  filter: "Filter"
-  status: "Status"
-  create_pots: "Create post"
-  edit: "Edit"
-  posted_by: "Posted by"
-  deactivate: "Deactivate"
-  activate: "Activate"
-  create_user: "Create user"
-  name: "Name"
-  content: "Text"
-  update_post: "Update post"
-  destroy: "Destroy"
-  web_site: "MySite"
-  organizations: "Organizations"
+  models:
+    main:
+      web_site: "MySite"
+      organizations: "Organizations"
+    organization:
+      title: "Title"
+      posts: "Posts"
+      users: "Users"
+      lists: "Listing organizations"
+      filter: "Filter"
+    post:
+      status: "Status"
+      create_pots: "Create post"
+      edit: "Edit"
+      posted_by: "Posted by"
+      content: "Text"
+      update_post: "Update post"
+      destroy: "Destroy"
+    user:
+      deactivate: "Deactivate"
+      activate: "Activate"
+      create_user: "Create user"
+      name: "Name"

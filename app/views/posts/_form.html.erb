@@ -9,15 +9,15 @@
   <% end %>
 
   <p>
-    <%= form.collection_select(:user_id, users, :id, :name, :selected => name)%>
+    <%= form.collection_select(:user_id, users, :id, :name, label: t('models.user.name'), :selected => name)%>
   </p>
 
   <p>
-    <%= form.text_area :content, label: t(:content)%>
+    <%= form.text_area :content, label: t('models.post.content')%>
   </p>
 
   <p>
-    <%= form.collection_select(:status, Post.statuses, :first, :first, label: t(:status), :selected => status)%>
+    <%= form.collection_select(:status, Post.statuses, :first, :first, label: t('models.post.status'), :selected => status)%>
   </p>
 
   <p>

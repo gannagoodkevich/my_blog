@@ -1,10 +1,10 @@
 <%= bootstrap_form_with scope: :user, url: organization_users_path, local: true do |form| %>
   <p>
-    <%= form.text_field :name, label: t(:name)%>
+    <%= form.text_field :name, label: t('models.user.name')%>
   </p>
 
   <p>
-    <%= form.collection_select(:active, [["active", true], ["inactive", false]], :last, :first, label: t(:status))%>
+    <%= form.collection_select(:active, [["active", true], ["inactive", false]], :last, :first, label: t('models.post.status'))%>
   </p>
 
   <p>

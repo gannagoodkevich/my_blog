@@ -14,11 +14,11 @@
     <nav class="navbar navbar-inverse">
  <div class="container-fluid">
    <div class="navbar-header">
-     <a class="navbar-brand" href="http://localhost:3000/en/organizations"><%= t :web_site %></a>
+     <a class="navbar-brand" href="http://localhost:3000/en/organizations"><%= t 'models.main.web_site' %></a>
    </div>
    <ul class="nav navbar-nav">
      <li class="dropdown">
-       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t :organizations %>
+       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t 'models.main.organizations' %>
          <span class="caret"></span></a>
        <ul class="dropdown-menu">
          <% Organization.all.each do |organization| %>

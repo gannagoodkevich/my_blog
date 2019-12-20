@@ -6,7 +6,7 @@
 
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1><%= t :lists %></h1>
+    <h1><%= t 'models.organization.lists' %></h1>
   </div>
   <div class="col-sm-3"></div>
 </div>
@@ -16,19 +16,19 @@
   <div class="col-sm-6">
     <table class="table table-striped">
       <tr>
-        <th><%= t :title %></th>
-        <th><%= t :posts %></th>
-        <th><%= t :users %></th>
+        <th><%= t 'models.organization.title' %></th>
+        <th><%= t 'models.organization.posts' %></th>
+        <th><%= t 'models.organization.users' %></th>
       </tr>
       <% @organizations.each do |org| %>
         <tr>
           <td><%= org.title %></td>
           <td><%= button_to organization_posts_path(org), method: "get", class: "btn btn-info" do%>
-              <%= t :posts %>
+              <%= t 'models.organization.posts' %>
             <%end %>
           </td>
           <td><%= button_to organization_users_path(org), method: "get", class: "btn btn-info" do%>
-              <%= t :users %>
+              <%= t 'models.organization.users' %>
       <%end %></td>
         </tr>
       <% end %>
