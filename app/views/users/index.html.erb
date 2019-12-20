@@ -1,12 +1,12 @@
 <% content_for :title do %>
-  <%= Organization.find(params[:organization_id]).title %>: <%= t :users %>
+  <%= @organization %>: <%= t :users %>
 <% end %>
 
 <div class="row">
 
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1><%= Organization.find(params[:organization_id]).title %>: <%= t :users %></h1>
+    <h1><%= @organization.title %>: <%= t :users %></h1>
     <div class="col-sm-12" style="background-color:#63c0de"></div>
   </div>
   <div class="col-sm-3"></div>
@@ -22,7 +22,7 @@
       </tr>
       <% @users.each do |user| %>
         <tr>
-          <td><%= link_to user.name, organization_user_path(Organization.find(params[:organization_id]), user) %></td>
+          <td><%= link_to user.name, organization_user_path(@organization, user) %></td>
           <td><% if user.active %>
               <%= "active" %>
               <%else %>
@@ -44,7 +44,7 @@
 
   <div class="col-sm-8">
     <div class="col-sm-1"></div>
-    <div class="col-sm-11"><%= button_to new_organization_user_path(Organization.find(params[:organization_id])), method: "get", class: "btn btn-info" do%>
+    <div class="col-sm-11"><%= button_to new_organization_user_path(@organization), method: "get", class: "btn btn-info" do%>
         <%= t :create_user %>
       <%end %></div>
   </div>

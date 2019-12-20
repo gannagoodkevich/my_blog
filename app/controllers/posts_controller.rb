@@ -2,14 +2,19 @@ class PostsController < ApplicationController
   def index
     @posts = Post.with_active_users(params.dig(:organization_id))
     @posts = @posts.page(params.dig(:page))
+    @organization = Organization.find(params.dig(:organization_id))
   end
 
   def new
     @post = Post.new
+    @default_name = Organization.find(params.dig(:organization_id)).users.first
+    @default_status = Post.statuses.first
+    @organization = Organization.find(params.dig(:organization_id))
   end
 
   def edit
     @post = Post.find(params.dig(:id))
+    @organization = Organization.find(params.dig(:organization_id))
   end
 
   def create

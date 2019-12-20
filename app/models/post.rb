@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   paginates_per 20
   belongs_to :user
   has_many :images, as: :imageable
-  enum status: { inactive: 1, under_review: 2, active: 3, archived: 4 }
+  enum status: [ :inactive, :under_review, :active, :archived ]
 
   validates :status, inclusion: { in: %w[inactive under_review active archived],
                                 message: '%{value} is not a valid status' }

@@ -2,10 +2,11 @@ class UsersController < ApplicationController
   def index
     @users = User.where(organization_id: params.dig(:organization_id))
     @users = @users.page(params.dig(:page))
+    @organization = Organization.find(params.dig(:organization_id))
   end
 
   def new
-
+    @organization = Organization.find(params.dig(:organization_id))
   end
 
 
@@ -28,6 +29,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params.dig(:id))
     @posts = @user.posts.page(params.dig(:page))
+    @organization = Organization.find(params.dig(:organization_id))
   end
 
   private

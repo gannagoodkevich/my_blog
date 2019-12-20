@@ -1,14 +1,12 @@
 <% content_for :title do %>
-  <%= Organization.find(params[:organization_id]).title %>
+  <%= @organization.title %>
 <% end %>
-
-<% @organization = Organization.find(params[:organization_id]) %>
 
 <div class="row">
 
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1><%= @organization.title %>: create post</h1>
+    <h1><%= @organization.title %>: <%= t :update_post%></h1>
   </div>
   <div class="col-sm-3"></div>
 </div>
