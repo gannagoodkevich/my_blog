@@ -3,6 +3,19 @@ class PostsController < ApplicationController
     @posts = Post.with_active_users(params.dig(:organization_id))
     @posts = @posts.page(params.dig(:page))
     @organization = Organization.find(params.dig(:organization_id))
+    @post_status = @posts.active
+    if params[:active]
+       @post_status = @posts.active   
+    end
+    if params[:inactive]   
+     @post_status = @posts.inactive   
+    end    
+    if params[:under_review]   
+     @post_status = @posts.under_review   
+    end    
+    if params[:archived]   
+     @post_status = @posts.archived   
+    end    
   end
 
   def new
