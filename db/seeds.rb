@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 organization_title_list = %w[Readworms Anonymus MemeCult History]
 organization_title_list.each do |title|
   Organization.create(title: title)
@@ -29,12 +31,32 @@ user_name_list.each do |name|
   User.create(name: name, active: true, organization_id: 3)
 end
 
-i = 1
-index = 0
-File.open("/media/asus/Ann/ITechArt/my_blog/db/file.txt").each do |line|
-    Post.create(content: line, status: :active, user_id: i)
-    i+=1
-    i=0 if i == User.all.count
+820.times do
+  User.all.each do |user|
+    line = Faker::Movies::HitchhikersGuideToTheGalaxy.quote
+    Post.create(content: line, status: :active, user_id: user.id)
+  end
+  User.all.each do |user|
+    line = Faker::Movies::StarWars.quote
+    Post.create(content: line, status: :active, user_id: user.id)
+  end
+  User.all.each do |user|
+    line = Faker::Movies::StarWars.wookiee_sentence
+    Post.create(content: line, status: :inactive, user_id: user.id)
+  end
+
+  User.all.each do |user|
+    line = Faker::Movies::Lebowski.quote
+    Post.create(content: line, status: :archived, user_id: user.id)
+  end
+  User.all.each do |user|
+    line = Faker::TvShows::DrWho.quote
+    Post.create(content: line, status: :under_review, user_id: user.id)
+  end
+
+  User.all.each do |user|
+    line = Faker::Books::Lovecraft.paragraph
+    Post.create(content: line, status: :active, user_id: user.id)
+  end
 end
 
-Post.create(content: "MyPost", status: 'archived', user_id: 1)
