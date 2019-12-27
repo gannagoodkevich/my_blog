@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def create
     @organization = Organization.find(params.dig(:organization_id))
     @organization.users.create!(attr_user)
+    UserMailer.with(organization: @organization, user: attr_user).new_user_mail.deliver_later
     redirect_to organization_users_path(@organization)
   end
 
