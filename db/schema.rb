@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 2019_12_04_112022) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["status"], name: "index_posts_on_status"
-    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
