@@ -16,13 +16,13 @@ class UsersController < ApplicationController
 
   def create
     @organization = Organization.find(params.dig(:organization_id))
-    @organization.users.create!(attr_user)
+    @organization.users.create!(user_params)
     redirect_to organization_users_path(@organization)
   end
 
   def update
     @organization = Organization.find(params.dig(:organization_id))
-    User.find(params.dig(:id)).update!(attr_button)
+    User.find(params.dig(:id)).update!(button_params)
     redirect_to organization_user_path
   end
 
@@ -34,11 +34,11 @@ class UsersController < ApplicationController
 
   private
 
-  def attr_user
+  def user_params
     params.require(:user).permit(:name, :active)
   end
 
-  def attr_button
+  def button_params
     params.require(:button).permit(:active)
   end
 end
