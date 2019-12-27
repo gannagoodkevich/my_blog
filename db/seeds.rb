@@ -31,7 +31,7 @@ user_name_list.each do |name|
   User.create(name: name, active: true, organization_id: 3)
 end
 
-820.times do
+850.times do
   User.all.each do |user|
     line = Faker::Movies::HitchhikersGuideToTheGalaxy.quote
     Post.create(content: line, status: :active, user_id: user.id)
