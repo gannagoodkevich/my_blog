@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/faker-ruby/faker.git
-  revision: 179ff348e3eb14cdabb17fcbad4c0f22e502a321
-  branch: master
-  specs:
-    faker (2.9.0)
-      i18n (>= 1.6, < 1.8)
-
-GIT
   remote: https://github.com/thoughtbot/shoulda-matchers.git
   revision: 4b160bd19ecca7f97d7ac22dccd5fde9b0da5a9f
   branch: rails-5
@@ -102,6 +94,7 @@ GEM
     childprocess (2.0.0)
       rake (< 13.0)
     concurrent-ruby (1.1.5)
+    connection_pool (2.2.2)
     crass (1.0.5)
     diff-lcs (1.3)
     erubi (1.9.0)
@@ -158,6 +151,8 @@ GEM
     public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
+    rack-protection (2.0.7)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -204,6 +199,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
+    redis (4.1.3)
     regexp_parser (1.6.0)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -244,6 +240,11 @@ GEM
     selenium-webdriver (3.142.4)
       childprocess (>= 0.5, < 3.0)
       rubyzip (~> 1.2, >= 1.2.2)
+    sidekiq (6.0.4)
+      connection_pool (>= 2.2.2)
+      rack (>= 2.0.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
     simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -297,7 +298,6 @@ DEPENDENCIES
   bootswatch-rails
   byebug (= 11.0.1)
   capybara (= 3.28.0)
-  faker!
   jbuilder (= 2.9.1)
   jquery-rails
   jquery-turbolinks
@@ -314,6 +314,7 @@ DEPENDENCIES
   sass-rails (= 5.1.0)
   selenium-webdriver (= 3.142.4)
   shoulda-matchers!
+  sidekiq
   simple_form
   spring (= 2.1.0)
   spring-watcher-listen (= 2.0.1)
