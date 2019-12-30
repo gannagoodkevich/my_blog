@@ -29,6 +29,8 @@ group :development do
   gem 'jquery-rails'
   gem 'jquery-turbolinks'
   gem 'sidekiq'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem "sidekiq-cron", "~> 1.1"
 end
 
 group :test do
