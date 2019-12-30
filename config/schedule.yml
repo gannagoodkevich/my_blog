@@ -1,0 +1,3 @@
+present_mail_job:
+  cron: "*/1 * * * *"
+  class: SendMailWorker

@@ -1,0 +1,6 @@
+:concurrency: 200
+:queues:
+  - ['default', 2]
+  - ['send_present', 3]
+  - ['mailer', 4]
+  - ['send_future', 3]

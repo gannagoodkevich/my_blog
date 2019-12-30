@@ -1,0 +1,4 @@
+my_second_job:
+  every: '10s'
+  class: FutureMailJob
+  include_metadata: true
