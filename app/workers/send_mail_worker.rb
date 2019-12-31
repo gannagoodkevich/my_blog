@@ -3,7 +3,7 @@ class SendMailWorker
   sidekiq_options queue: 'send_present'
 
   def perform(*args)
-    10.times do
+    10000.times do
       MailJob.perform_now
     end
   end
