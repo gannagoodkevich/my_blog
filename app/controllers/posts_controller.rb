@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  before_action :find_organization
+  before_action :find_user
+
   def index
     @posts = Post.with_active_users(organization_attr)
     @posts = @posts.page(params.dig(:page))
-    @organization = Organization.find(organization_attr)
     @post_status = @posts.active
     if params[:active]
       @post_status = @posts.active
@@ -20,25 +22,30 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @default_name = Organization.find(organization_attr).users.first
+    @default_name = @organization.users.first
     @default_status = Post.statuses.first
-    @organization = Organization.find(organization_attr)
+    @users = []
+    if request.referrer.split('/')[-2] == 'users'
+      @user_id = request.referrer.split('/')[-1]
+      @users << User.find(@user_id)
+    else
+      @users = @organization.users.all
+    end
   end
 
   def edit
     @post = Post.find(params.dig(:id))
-    @organization = Organization.find(organization_attr)
   end
 
   def create
-    @organization = Organization.find(organization_attr)
-    User.find_by(id: params.dig(:post, :user_id)).posts.create!(post_attr)
+    raise 'User not find error' if @user.nil?
+
+    @user.posts.create!(post_attr)
     redirect_to organization_posts_path(@organization)
   end
 
   def update
     Post.find_by(id: params.dig(:id)).update!(post_attr)
-    @organization = Organization.find(organization_attr)
     redirect_to organization_posts_path(@organization)
   end
 
@@ -46,7 +53,6 @@ class PostsController < ApplicationController
     @post = Post.find(params.dig(:id))
     @post.destroy!
 
-    @organization = Organization.find(organization_attr)
     redirect_to organization_posts_path(@organization)
   end
 
@@ -58,5 +64,13 @@ class PostsController < ApplicationController
 
   def organization_attr
     params.dig(:organization_id)
+  end
+
+  def find_organization
+    @organization = Organization.find(organization_attr)
+  end
+
+  def find_user
+    @user = User.find_by(id: params.dig(:post, :user_id))
   end
 end

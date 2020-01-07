@@ -2,8 +2,6 @@
   <%= @organization.title %>
 <% end %>
 
-<% @users = [] %>
-
 <div class="row">
 
   <div class="col-sm-3"></div>
@@ -16,16 +14,7 @@
 <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-  <% if request.referrer.split("/")[-2]=="users" %>
-    <%@user_id  = request.referrer.split("/")[-1]%>
-    <% @users << User.find(@user_id)%>
-  <% else %>
-    <% @users = @organization.users.all%>
-  <%end %>
     <%= render partial: "form", locals: {my_url: organization_posts_path, post: @post, users: @users} %>
 </div>
   <div class="col-sm-3"></div>
 </div>
-
-
-
