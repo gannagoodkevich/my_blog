@@ -4,4 +4,4 @@
   - ['send_present', 3]
   - ['mailer', 4]
   - ['send_future', 3]
-  - ['error_retry', 3]
+  - ['error_retry', 5]
