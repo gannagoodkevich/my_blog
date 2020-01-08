@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.with_active_users(common_attr[:organization_id])
-    @posts = @posts.page(page_attr)
+    @posts = @posts.page(page_attr[:page])
     @post_status = @posts.active
     @post_status = @posts.active if status_attr[:active]
     @post_status = @posts.inactive if status_attr[:inactive]
