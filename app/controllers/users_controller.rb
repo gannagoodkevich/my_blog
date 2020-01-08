@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
+  before_action :find_organization, :permit_params
+
   def index
-    @users = User.where(organization_id: organization_params[:organization_id])
+    @users = User.where(organization_id: params[:organization_id])
     @users = @users.page(params.dig(:page))
-    @organization = Organization.find(organization_params[:organization_id])
   end
 
   def new
-    @organization = Organization.find(organization_params[:organization_id])
   end
 
   def edit
@@ -14,21 +14,18 @@ class UsersController < ApplicationController
   end
 
   def create
-    @organization = Organization.find(organization_params[:organization_id])
     @organization.users.create!(user_params)
     redirect_to organization_users_path(@organization)
   end
 
   def update
-    @organization = Organization.find(organization_params[:organization_id])
     User.find(params.dig(:id)).update!(button_params)
     redirect_to organization_user_path
   end
 
   def show
-    @user = User.find(params.dig(:id))
+    @user = User.find(params[:id])
     @posts = @user.posts.page(params.dig(:page))
-    @organization = Organization.find(organization_params[:organization_id])
   end
 
   private
@@ -41,7 +38,11 @@ class UsersController < ApplicationController
     params.require(:button).permit(:active)
   end
 
-  def organization_params
-    params.permit(:organization_id)
+  def permit_params
+    params.permit(:id, :organization_id, :locale)
+  end
+
+  def find_organization
+    @organization = Organization.find(params[:organization_id])
   end
 end

@@ -1,9 +1,9 @@
 <%= bootstrap_form_with model: post, url: my_url, local: true do |form| %>
-  <% name = @default_name%>
+  <% name = default_name%>
   <%if post.user%>
     <% name = post.user.id%>
   <%end %>
-  <% status = @default_status%>
+  <% status = default_status%>
   <%if post.status%>
     <% status = post.status %>
   <% end %>

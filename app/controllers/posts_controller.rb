@@ -1,23 +1,15 @@
 class PostsController < ApplicationController
   before_action :find_organization
-  before_action :find_user
+  #before_action :find_user
 
   def index
-    @posts = Post.with_active_users(organization_attr)
-    @posts = @posts.page(params.dig(:page))
+    @posts = Post.with_active_users(common_attr[:organization_id])
+    @posts = @posts.page(page_attr)
     @post_status = @posts.active
-    if params[:active]
-      @post_status = @posts.active
-    end
-    if params[:inactive]
-      @post_status = @posts.inactive
-    end
-    if params[:under_review]
-      @post_status = @posts.under_review
-    end
-    if params[:archived]
-      @post_status = @posts.archived
-    end
+    @post_status = @posts.active if status_attr[:active]
+    @post_status = @posts.inactive if status_attr[:inactive]
+    @post_status = @posts.under_review if status_attr[:under_review]
+    @post_status = @posts.archived if status_attr[:archived]
   end
 
   def new
@@ -34,10 +26,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params.dig(:id))
+    @post = Post.find_by(id: params[:id])
   end
 
   def create
+    find_user
     raise 'User not find error' if @user.nil?
 
     @user.posts.create!(post_attr)
@@ -45,13 +38,14 @@ class PostsController < ApplicationController
   end
 
   def update
-    Post.find_by(id: params.dig(:id)).update!(post_attr)
+    Post.find_by(id: post_attr[:user_id]).update!(post_attr)
     redirect_to organization_posts_path(@organization)
   end
 
   def destroy
-    @post = Post.find(params.dig(:id))
-    @post.destroy!
+    @post = Post.find(common_attr[:id])
+    puts @post.inspect
+    @post.delete
 
     redirect_to organization_posts_path(@organization)
   end
@@ -62,15 +56,23 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content, :status, :user_id)
   end
 
-  def organization_attr
-    params.dig(:organization_id)
+  def common_attr
+    params.permit(:organization_id, :locale, :id)
   end
 
   def find_organization
-    @organization = Organization.find(organization_attr)
+    @organization = Organization.find(status_attr[:organization_id])
   end
 
   def find_user
-    @user = User.find_by(id: params.dig(:post, :user_id))
+    @user = User.find_by(id: params.permit(:organization_id, :user_id, :locale, :id))
+  end
+
+  def status_attr
+    params.permit(:active, :inactive, :under_review, :archived, :locale, :organization_id)
+  end
+
+  def page_attr
+    params.permit(:page)
   end
 end
