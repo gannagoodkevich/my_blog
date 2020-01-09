@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_organization
+  before_action :find_user, only: [:create]
+  before_action :find_post, only: %i[update destroy edit]
 
   def index
     @posts = Post.with_active_users(status_params[:organization_id])
@@ -15,26 +17,27 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(id: common_params[:id])
+    raise 'Post not found error' if @post.nil?
   end
 
   def create
-    @user = find_user
-    raise 'User not find error' if @user.nil?
+    raise 'User not found error' if @user.nil?
 
     @user.posts.create!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def update
-    Post.find_by(id: common_params[:id]).update!(post_params)
+    raise 'Post not found error' if @post.nil?
+
+    @post.update!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def destroy
-    @post = Post.find(common_params[:id])
-    @post.destroy!
+    raise 'Post not found error' if @post.nil?
 
+    @post.destroy!
     redirect_to organization_posts_path(@organization)
   end
 
@@ -53,7 +56,11 @@ class PostsController < ApplicationController
   end
 
   def find_user
-    User.find_by(id: post_params[:user_id])
+    @user = User.find_by(id: post_params[:user_id])
+  end
+
+  def find_post
+    @post = Post.find(common_params[:id])
   end
 
   def find_valid_users

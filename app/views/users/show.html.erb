@@ -27,13 +27,7 @@
         <%end %>
       </h3>
           <%=button_to organization_user_path, method: :put, class: "btn btn-info" , params: { button: {active: !@user.active} } do%>
-            <%if @user.active %>
-              <%= t 'models.user.deactivate'%>
-
-            <%else %>
-            <%= t 'models.user.activate'%>
-
-            <%end %>
+            <%= @user.active ? (t 'models.user.deactivate') : (t 'models.user.activate')%>
           <%end %>
           </p>
       </div>
