@@ -51,4 +51,3 @@ posts_content.each do |post|
 end
 
 Post.create(content: "MyPost", status: 'archived', user_id: 1)
-
