@@ -3,7 +3,7 @@ class Organization < ApplicationRecord
 
   has_many :users
 
-  validates :title, presence: true, length: { maximum: 100 }
+  validates :title, presence: true, length: {maximum: 100}
 
   after_validation :after_org_validation
   after_create :after_org_create

@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   after_validation :validation
   after_create :create
   after_update :update
-  after_destroy :destroy
+  before_destroy :destroy, prepend: true
 
   scope :inactive, -> { where(status: 'inactive') }
   scope :under_review, -> { where(status: 'under_review') }
@@ -21,8 +21,9 @@ class Post < ApplicationRecord
 
   private
 
-  def destroy
-    puts 'Post object was destroyed'
+  def destroy_before
+    puts 'Post object will be destroyed'
+    false
   end
 
   def create

@@ -13,13 +13,17 @@ class User < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :unactive, -> { where(active: false) }
 
+  def to_param
+    "#{id} #{name}".parameterize
+  end
+
   private
 
   def create
-    puts "User object was created"
+    puts 'User object was created'
   end
 
   def validate
-    puts "User object was validated"
+    puts 'User object was validated'
   end
 end

@@ -1,13 +1,19 @@
 class OrganizationsController < ApplicationController
   def index
-    @organizations = Organization.all.page(params.dig(:page))
+    @organizations = Organization.all.page(org_params[:page])
   end
 
   def update
-    @organization.update(params.dig(:organization))
+    @organization.update(org_params[:organization])
   end
 
   def show
-    @organization = Organization.find(params.dig(:id))
+    @organization = Organization.find(org_params[:id])
+  end
+
+  private
+
+  def org_params
+    params.permit(:page, :organization, :id, :locale)
   end
 end
