@@ -34,6 +34,7 @@ class PostsController < ApplicationController
     @organization = Organization.find(params.dig(:organization_id))
     User.find(params.dig(:post, :user_id)).posts.create!(post_attr)
     redirect_to organization_posts_path(@organization)
+    ErrorJob.perform_later
   end
 
   def update

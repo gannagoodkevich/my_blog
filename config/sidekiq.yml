@@ -1,4 +1,4 @@
-:concurrency: 200
+:concurrency: 4
 :queues:
   - ['default', 2]
   - ['send_present', 3]
@@ -9,12 +9,11 @@
 tasks: &tasks
   schedule_job:
     class: FutureMailJob
-    every: ["10s", first_in: "1m"]
+    every: ["10s", first_in: "5s"]
     queue: "send_future"
 
   present_mail_job:
-    cron: "*/1 * * * *"
+    cron: "*/15 * * * *"
     class: SendMailWorker
-
 :schedule:
   <<: *tasks
