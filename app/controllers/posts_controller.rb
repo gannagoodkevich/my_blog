@@ -75,10 +75,10 @@ class PostsController < ApplicationController
 
   def find_valid_users
     @users = []
-    if request.referrer.split("/")[-2] == "users"
-      @users << User.find_by(id: request.referrer.split("/").last)
-    else
+    if common_params[:user_id].nil?
       @users = @organization.users.all
+    else
+      @users << User.find_by(id: common_params[:user_id])
     end
   end
 
@@ -87,7 +87,7 @@ class PostsController < ApplicationController
   end
 
   def common_params
-    params.permit(:organization_id, :locale, :id, :page)
+    params.permit(:organization_id, :locale, :id, :page, :user_id)
   end
 
   def status_params

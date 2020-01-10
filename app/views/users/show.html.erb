@@ -60,7 +60,7 @@
 
   <div class="col-sm-7">
     <div class="col-sm-1"></div>
-    <div class="col-sm-11"><%= button_to new_organization_post_path(@organization), method: "get", class: "btn btn-info" do%>
+    <div class="col-sm-11"><%= button_to new_organization_post_path(@organization), method: "get", class: "btn btn-info", params: [user_id: @user.id] do%>
         <%= t 'models.post.create_pots' %>
       <%end %></div>
   </div>
