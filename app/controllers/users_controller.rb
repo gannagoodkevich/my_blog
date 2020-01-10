@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
   before_action :find_organization
+  before_action :find_user, only: [:edit, :update, :show]
 
   def index
     @users = User.where(organization_id: common_params[:organization_id])
+    if @users.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
     @users = @users.page(common_params[:page])
   end
 
@@ -10,7 +14,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(common_params[:id])
+    if @user.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
   end
 
   def create
@@ -19,19 +25,28 @@ class UsersController < ApplicationController
   end
 
   def update
-    User.find(common_params[:id]).update!(button_params)
+    @user.update!(button_params)
     redirect_to organization_user_path
   end
 
   def show
-    @user = User.find(common_params[:id])
+    if @user.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
     @posts = @user.posts.page(params.dig(:page))
   end
 
   private
 
   def find_organization
-    @organization = Organization.find(params[:organization_id])
+    @organization = Organization.find_by(id: params[:organization_id])
+    if @organization.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
+  end
+
+  def find_user
+    @user = User.find_by(id: common_params[:id])
   end
 
   def user_params

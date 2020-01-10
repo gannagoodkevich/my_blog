@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_organization
   before_action :find_user, only: [:create]
-  before_action :find_post, only: %i[update destroy edit]
+  before_action :find_post, only: [:update, :destroy, :edit]
 
   def index
     @posts = Post.with_active_users(status_params[:organization_id])
@@ -13,30 +13,36 @@ class PostsController < ApplicationController
     @post = Post.new
     @default_name = @organization.users.first
     @default_status = Post.statuses.first
-    @users = find_valid_users
+    find_valid_users
   end
 
   def edit
-    render "layouts/error" if @post.nil?
+    if @post.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
   end
 
   def create
     if @user.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false and return
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
     end
     @user.posts.create!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def update
-    raise "Post not found error" if @post.nil?
+    if @post.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
 
     @post.update!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def destroy
-    raise "Post not found error" if @post.nil?
+    if @post.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
 
     @post.destroy!
     redirect_to organization_posts_path(@organization)
@@ -46,6 +52,9 @@ class PostsController < ApplicationController
 
   def find_organization
     @organization = Organization.find(status_params[:organization_id])
+    if @organization.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
   end
 
   def find_posts_by_status
@@ -61,18 +70,16 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(common_params[:id])
+    @post = Post.find_by(id: common_params[:id])
   end
 
   def find_valid_users
-    users = []
+    @users = []
     if request.referrer.split("/")[-2] == "users"
-      user_id = request.referrer.split("/")[-1]
-      users << User.find(user_id)
+      @users << User.find_by(id: request.referrer.split("/").last)
     else
-      users = @organization.users.all
+      @users = @organization.users.all
     end
-    users
   end
 
   def post_params

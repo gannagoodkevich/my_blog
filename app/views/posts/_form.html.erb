@@ -9,7 +9,7 @@
   <% end %>
 
   <p>
-    <%= form.text_area :user_id, label: t('models.post.content')%>
+    <%= form.collection_select(:user_id, users, :id, :name, label: t('models.user.name'), :selected => name) %>
   </p>
 
   <p>

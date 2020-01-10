@@ -9,9 +9,7 @@ class Post < ApplicationRecord
   validates :status, inclusion: { in: %w[inactive under_review active archived],
                                 message: '%{value} is not a valid status' }
 
-  after_validation :validation
-  after_create :create
-  after_update :update
+
   before_destroy :destroy, prepend: true
 
   scope :inactive, -> { where(status: 'inactive') }
@@ -24,17 +22,5 @@ class Post < ApplicationRecord
   def destroy_before
     puts 'Post object will be destroyed'
     false
-  end
-
-  def create
-    puts 'Post object was created'
-  end
-
-  def validation
-    puts 'Post object was validated'
-  end
-
-  def update
-    puts 'Post was updated!'
   end
 end

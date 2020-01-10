@@ -8,7 +8,10 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find(org_params[:id])
+    @organization = Organization.find_by(id: org_params[:id])
+    if @organization.nil?
+      render file: "#{Rails.root}/public/404.html", layout: false and return
+    end
   end
 
   private
