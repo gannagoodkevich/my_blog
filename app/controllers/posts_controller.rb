@@ -17,25 +17,26 @@ class PostsController < ApplicationController
   end
 
   def edit
-    raise 'Post not found error' if @post.nil?
+    render "layouts/error" if @post.nil?
   end
 
   def create
-    raise 'User not found error' if @user.nil?
-
+    if @user.nil?
+      render file: "#{Rails.root}/public/404.html", layout: false and return
+    end
     @user.posts.create!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def update
-    raise 'Post not found error' if @post.nil?
+    raise "Post not found error" if @post.nil?
 
     @post.update!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def destroy
-    raise 'Post not found error' if @post.nil?
+    raise "Post not found error" if @post.nil?
 
     @post.destroy!
     redirect_to organization_posts_path(@organization)
@@ -65,8 +66,8 @@ class PostsController < ApplicationController
 
   def find_valid_users
     users = []
-    if request.referrer.split('/')[-2] == 'users'
-      user_id = request.referrer.split('/')[-1]
+    if request.referrer.split("/")[-2] == "users"
+      user_id = request.referrer.split("/")[-1]
       users << User.find(user_id)
     else
       users = @organization.users.all
