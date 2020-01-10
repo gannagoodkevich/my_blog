@@ -25,6 +25,9 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.nil?
+      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+    end
     @user.update!(button_params)
     redirect_to organization_user_path
   end

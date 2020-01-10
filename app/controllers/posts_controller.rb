@@ -18,13 +18,13 @@ class PostsController < ApplicationController
 
   def edit
     if @post.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+      render(file: "#{Rails.root}/public/404.html", layout: false) && return
     end
   end
 
   def create
     if @user.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+      render(file: "#{Rails.root}/public/404.html", layout: false) && return
     end
     @user.posts.create!(post_params)
     redirect_to organization_posts_path(@organization)
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+      render(file: "#{Rails.root}/public/404.html", layout: false) && return
     end
 
     @post.update!(post_params)
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+      render(file: "#{Rails.root}/public/404.html", layout: false) && return
     end
 
     @post.destroy!
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
   def find_organization
     @organization = Organization.find(status_params[:organization_id])
     if @organization.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+      render(file: "#{Rails.root}/public/404.html", layout: false) && return
     end
   end
 
