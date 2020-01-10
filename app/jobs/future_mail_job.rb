@@ -2,7 +2,7 @@ class FutureMailJob < ApplicationJob
 
   def perform(*args)
     100.times do
-      MailJob.perform_now
+      MailJob.perform_later
     end
   end
 end

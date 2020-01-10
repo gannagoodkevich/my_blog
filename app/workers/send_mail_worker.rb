@@ -4,7 +4,7 @@ class SendMailWorker
 
   def perform(*args)
     10000.times do
-      MailJob.perform_now
+      MailJob.perform_later
     end
   end
 end

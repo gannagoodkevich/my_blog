@@ -1,5 +1,0 @@
-my_second_job:
-  class: FutureMailJob
-  every: '10s'
-  queue: send_future
-  include_metadata: true
