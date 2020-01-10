@@ -1,3 +1,0 @@
-present_mail_job:
-  cron: "*/15 * * * *"
-  class: SendMailWorker

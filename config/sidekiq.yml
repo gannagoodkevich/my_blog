@@ -5,3 +5,16 @@
   - ['mailer', 4]
   - ['send_future', 3]
   - ['error_retry', 5]
+
+tasks: &tasks
+  schedule_job:
+    class: FutureMailJob
+    every: ["10s", first_in: "1m"]
+    queue: "send_future"
+
+  present_mail_job:
+    cron: "*/1 * * * *"
+    class: SendMailWorker
+
+:schedule:
+  <<: *tasks
