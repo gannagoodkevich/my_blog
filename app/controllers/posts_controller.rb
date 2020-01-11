@@ -11,8 +11,6 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @default_name = @organization.users.first
-    @default_status = Post.statuses.first
     find_valid_users
   end
 
