@@ -259,6 +259,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -311,6 +313,7 @@ DEPENDENCIES
   sqlite3 (= 1.4.1)
   turbolinks (= 5.2.0)
   tzinfo-data
+  warden
   web-console (= 4.0.1)
   webdrivers (= 4.1.2)
   webpacker (= 4.0.7)

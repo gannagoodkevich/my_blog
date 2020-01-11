@@ -28,6 +28,7 @@ group :development do
   gem 'rails_bootstrap_navbar'
   gem 'jquery-rails'
   gem 'jquery-turbolinks'
+  gem 'warden'
 end
 
 group :test do

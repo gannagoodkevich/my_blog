@@ -6,5 +6,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :user_auths do
+    collection do
+      resource :registrations, only: [:show, :create]
+      resource :sessions, only: [:new, :create, :destroy]
+      resource :confirmations, only: [:show]
+    end
+  end
   root 'organizations#index'
 end
