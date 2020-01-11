@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <%= render partial: "form", locals: {my_url: organization_post_url, post: @post, users: @organization.users, default_name: @default_name, default_status: @default_status} %>
+    <%= render partial: "form", locals: {my_url: organization_post_url, post: @post, users: @organization.users} %>
   </div>
   <div class="col-sm-3">
     <%= button_to 'Destroy', organization_post_path(@organization, @post),

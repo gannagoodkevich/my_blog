@@ -20,11 +20,7 @@
     </div>
     <div class="col-sm-3">
       <div class="row">
-      <h3><%= t 'models.post.status' %>: <%if @user.active %>
-          active
-        <%else %>
-          inactive
-        <%end %>
+      <h3><%= t 'models.post.status' %>: <%= @user.active ? "active" : "inactive"%>
       </h3>
           <%=button_to organization_user_path, method: :put, class: "btn btn-info" , params: { button: {active: !@user.active} } do%>
             <%= @user.active ? (t 'models.user.deactivate') : (t 'models.user.activate')%>

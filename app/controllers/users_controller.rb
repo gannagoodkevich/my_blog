@@ -1,16 +1,13 @@
 class UsersController < ApplicationController
   before_action :find_organization
-  before_action :find_user, only: [:edit, :update, :show]
+  before_action :find_user, only: %i[edit update show]
 
   def index
-    @users = User.where(organization_id: common_params[:organization_id])
+    @users = User.where(organization_id: params[:organization_id])
     if @users.nil?
       render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
     end
-    @users = @users.page(common_params[:page])
-  end
-
-  def new
+    @users = @users.page(params[:page])
   end
 
   def edit
@@ -49,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(id: common_params[:id])
+    @user = User.find_by(id: params[:id])
   end
 
   def user_params
@@ -58,9 +55,5 @@ class UsersController < ApplicationController
 
   def button_params
     params.require(:button).permit(:active)
-  end
-
-  def common_params
-    params.permit(:id, :organization_id, :locale, :page)
   end
 end

@@ -1,18 +1,18 @@
 <%= form_tag(organization_posts_path(organization), method: "get") do %>
   <p>
-    <%= check_box_tag(:active) %>
+    <%= check_box_tag(:status, :active) %>
     <%= label_tag(:active, "active") %>
   </p>
   <p>
-    <%= check_box_tag(:inactive) %>
+    <%= check_box_tag(:status, :inactive) %>
     <%= label_tag(:inactive, "inactive") %>
   </p>
   <p>
-    <%= check_box_tag(:under_review) %>
+    <%= check_box_tag(:status, :under_review) %>
     <%= label_tag(:under_review, "under_review") %>
   </p>
   <p>
-    <%= check_box_tag(:archived) %>
+    <%= check_box_tag(:status, :archived) %>
     <%= label_tag(:archived, "archived") %>
   </p>
   <p>

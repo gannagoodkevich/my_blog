@@ -23,12 +23,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= link_to user.name, organization_user_path(@organization, user) %></td>
-          <td><% if user.active %>
-              <%= "active" %>
-              <%else %>
-            <%="inactive" %>
-              <%end%>
-          </td>
+          <td> <%= user.active ? "active" : "inactive" %> </td>
       <% end %>
     </table>
     <%= paginate @users, window: 2%>
