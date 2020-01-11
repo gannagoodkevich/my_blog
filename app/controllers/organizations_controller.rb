@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+
   def index
     @organizations = Organization.all.page(org_params[:page])
   end

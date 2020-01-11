@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     render(file: "#{Rails.root}/public/404.html", layout: false)
   end
 
+  def after_sign_in_path_for(resource)
+    user_auths_welcome_path
+  end
+
   private
 
   def default_url_options
