@@ -32,6 +32,7 @@ module MyBlog
     end
 
     config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+      manager.default_strategies :password
       manager.failure_app = UnauthorizedController
     end
 

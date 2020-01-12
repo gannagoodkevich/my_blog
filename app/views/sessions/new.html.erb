@@ -1,0 +1,27 @@
+<h1>Hello!!!</h1>
+
+<div class="row">
+  <div class="col-sm-2">
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-2">
+        <h1>Sign up</h1>
+        <div class="col-sm-12" style="background-color:#63c0de"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-2">
+        <% @user = UserAuth.new %>
+        <%= bootstrap_form_for(@user) do |f| %>
+          <%= f.email_field :email %>
+          <%= f.password_field :password %>
+          <%= f.submit "Log In" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-sm-2">
+  </div>
+</div>

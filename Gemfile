@@ -29,6 +29,7 @@ group :development do
   gem 'jquery-rails'
   gem 'jquery-turbolinks'
   gem 'warden'
+  gem 'bcrypt'
 end
 
 group :test do
