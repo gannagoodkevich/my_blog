@@ -28,8 +28,15 @@
      </li>
    </ul>
    <button class="btn btn-info navbar-btn"><%= link_to 'EN', "http://localhost:3000#{request.env['PATH_INFO'].gsub("ru", "en")}", class: "navbar-link", style: "color:#ffffff"%>/<%= link_to 'RU', "http://localhost:3000#{request.env['PATH_INFO'].gsub("en", "ru")}", class: "navbar-link", style: "color:#ffffff"%></button>
+     <%= link_to('Logout', destroy_user_auth_session_path, method: :delete) %>
  </div>
 </nav>
+    <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
   <%= yield %>
   </body>
 </html>
