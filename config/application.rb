@@ -31,10 +31,11 @@ module MyBlog
       UserAuth.find_by_id(id)
     end
 
-    config.middleware.insert_after ActionDispatch::Flash, Warden::Manager do |manager|
+    Rails.application.config.middleware.use Warden::Manager do |manager|
       manager.default_strategies :password
       manager.failure_app = UnauthorizedController
     end
+
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

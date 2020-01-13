@@ -2,8 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate!
 
   def create
-    var = authenticate!
-    puts var
+    authenticate!
     redirect_to :root
   end
 
