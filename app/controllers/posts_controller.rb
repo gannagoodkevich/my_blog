@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def edit
     if @post.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && return
+      return not_existed_error
     end
   end
 
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && return
+      return not_existed_error
     end
 
     @post.update!(post_params)
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
 
   def destroy
     if @post.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && return
+      return not_existed_error
     end
 
     @post.destroy!
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   def find_organization
     @organization = Organization.find(params[:organization_id])
     if @organization.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && return
+      return not_existed_error
     end
   end
 

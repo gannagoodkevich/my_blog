@@ -10,7 +10,7 @@ class OrganizationsController < ApplicationController
   def show
     @organization = Organization.find_by(id: org_params[:id])
     if @organization.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false and return
+      return not_existed_error
     end
   end
 
