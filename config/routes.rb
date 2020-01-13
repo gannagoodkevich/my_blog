@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   resources :user_auths do
     collection do
       resource :registrations, only: [:show, :create]
-      resource :sessions, only: [:new, :create, :destroy]
+      resource :sessions, only: [:show, :create, :destroy]
       resource :confirmations, only: [:show]
+      get "welcome"
     end
   end
-  root 'organizations#index'
+  root "user_auths#welcome"
 end

@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
     request.env['warden']
   end
 
+  def authenticate!
+    warden.authenticate!
+  end
+
   def not_existed_error
     render(file: "#{Rails.root}/public/404.html", layout: false)
   end
@@ -36,7 +40,7 @@ class ApplicationController < ActionController::Base
     I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
   end
 end
-
+=begin
 class SessionsController < ApplicationController
   skip_before_action :authenticate!
 
@@ -50,7 +54,7 @@ class SessionsController < ApplicationController
     redirect_to :root
   end
 end
-=begin
+
 class ConfirmationController < ApplicationController
   skip_before_action :authenticate!
 
@@ -81,11 +85,12 @@ end
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate!
 
-  def new
-    @user = UserAuth.new(params[:user])
+  def show
+    @user = UserAuth.show(params[:user])
     if @user.save
       flash[:notice] = t("registrations.user.success")
       redirect_to :root
     end
   end
+end
 =end

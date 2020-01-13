@@ -1,8 +1,8 @@
 class CreateUserAuths < ActiveRecord::Migration[6.0]
   def change
     create_table :user_auths do |t|
-      t.string :email, :null => false
-      t.string :password, :null => false, :dafault => ""
+      t.string :email
+      t.string :encrypted_password, :null => false, :default => ""
 
       # Confirmable
       t.string :conf_token

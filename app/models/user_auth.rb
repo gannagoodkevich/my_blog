@@ -2,23 +2,23 @@ require 'bcrypt'
 
 class UserAuth < ActiveRecord::Base
   include BCrypt
-  attr_accessor :email
   validates :email, :presence => true
 
   before_create :generate_confirmation_token
 
   def password
-    @password ||= Password.new(self.password)
+    @password ||= Password.new(self.encrypted_password)
   end
 
   def password=(new_password)
     @password = Password.create(new_password)
+    self.encrypted_password = @password
   end
 
   def confirm!
     self.conf_token = nil
     self.confirmed_at = Time.now.utc
-    self.save
+    self.save!
   end
 
   private
@@ -29,6 +29,7 @@ class UserAuth < ActiveRecord::Base
       unless UserAuth.where(:conf_token => token).any?
         self.conf_token = token
         self.confirm_sent_at = Time.now.utc
+        break
       end
     end
   end

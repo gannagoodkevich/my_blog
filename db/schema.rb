@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_01_11_210916) do
   end
 
   create_table "user_auths", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "password", null: false
+    t.string "email"
+    t.string "encrypted_password", default: "", null: false
     t.string "conf_token"
     t.datetime "confirmed_at"
     t.datetime "confirm_sent_at"

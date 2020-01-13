@@ -28,6 +28,8 @@
      </li>
    </ul>
    <button class="btn btn-info navbar-btn"><%= link_to 'EN', "http://localhost:3000#{request.env['PATH_INFO'].gsub("ru", "en")}", class: "navbar-link", style: "color:#ffffff"%>/<%= link_to 'RU', "http://localhost:3000#{request.env['PATH_INFO'].gsub("en", "ru")}", class: "navbar-link", style: "color:#ffffff"%></button>
+   <%= link_to('Logout', "/user_auths/sessions", method: :delete) %>
+   <%= link_to('Login', "/user_auths/sessions", method: :get) %>
  </div>
 </nav>
   <%= yield %>
