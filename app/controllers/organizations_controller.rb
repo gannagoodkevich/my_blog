@@ -1,6 +1,6 @@
 class OrganizationsController < ApplicationController
   def index
-    @organizations = Organization.all.page(org_params[:page])
+    @organizations = Organization.all.page(params[:page])
   end
 
   def update

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     if @user.nil?
       return not_existed_error
     end
-    @posts = @user.posts.page(params.dig(:page))
+    @posts = @user.posts.page(params[:page])
   end
 
   private

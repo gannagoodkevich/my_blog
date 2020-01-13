@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(id: post_params[:user_id])
+    @user = User.find_by(id: params[:user_id])
   end
 
   def find_post
