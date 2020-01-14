@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate!
 
   def create
-    authenticate!
+    warden.authenticate!
     redirect_to :root
   end
 

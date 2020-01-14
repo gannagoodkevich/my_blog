@@ -1,6 +1,6 @@
 class ConfirmationsController < ApplicationController
   skip_before_action :authenticate!
-  before_filter :redirect_if_token_empty!
+  before_action :redirect_if_token_empty!
 
   def show
     @user = UserAuth.where(:conf_token => params[:token]).first

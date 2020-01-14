@@ -12,11 +12,11 @@ class UnauthorizedController < ActionController::Metal
   end
 
   def respond
-    unless  request.get?
-      message = env['warden.options'].fetch(:message, "unauthorized.user")
-      flash.alert = I18n.t(message)
+    unless request.get?
+      flash.alert = I18n.t("hello")
+      puts "Error"
     end
 
-    redirect_to new_session_url
+    redirect_to :root
   end
 end

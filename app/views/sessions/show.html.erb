@@ -1,21 +1,19 @@
-<h1>Hello!!!</h1>
-
 <div class="row">
   <div class="col-sm-2">
   </div>
   <div class="col-sm-8">
     <div class="row">
       <div class="col-sm-2">
-        <h1>Sign up</h1>
+        <h1>Log in</h1>
         <div class="col-sm-12" style="background-color:#63c0de"></div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-2">
-        <%= bootstrap_form_with(url: '/user_auths/confirmations', method: "get") do |f| %>
+        <%= bootstrap_form_with(model: @user, url: '/user_auths/sessions', method: "post") do |f| %>
           <%= f.email_field :email %>
           <%= f.password_field :password %>
-          <%= f.submit "Log in" %>
+          <%= f.submit "Log in", class: "btn btn-info" %>
         <% end %>
       </div>
 
