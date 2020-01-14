@@ -4,16 +4,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where(organization_id: params[:organization_id])
-    if @users.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @users.nil?
+
     @users = @users.page(params[:page])
   end
 
   def edit
-    if @user.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @user.nil?
+
   end
 
   def create
@@ -22,17 +20,15 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @user.nil?
+
     @user.update!(button_params)
     redirect_to organization_user_path
   end
 
   def show
-    if @user.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @user.nil?
+
     @posts = @user.posts.page(params[:page])
   end
 
@@ -40,9 +36,8 @@ class UsersController < ApplicationController
 
   def find_organization
     @organization = Organization.find_by(id: params[:organization_id])
-    if @organization.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @organization.nil?
+
   end
 
   def find_user

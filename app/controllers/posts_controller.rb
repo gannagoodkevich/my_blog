@@ -15,32 +15,26 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if @post.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @post.nil?
+
   end
 
   def create
-    if @user.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @user.nil?
+
     @user.posts.create!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def update
-    if @post.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @post.nil?
 
     @post.update!(post_params)
     redirect_to organization_posts_path(@organization)
   end
 
   def destroy
-    if @post.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @post.nil?
 
     @post.destroy!
     redirect_to organization_posts_path(@organization)
@@ -50,14 +44,13 @@ class PostsController < ApplicationController
 
   def find_organization
     @organization = Organization.find(params[:organization_id])
-    if @organization.nil?
-      return not_existed_error
-    end
+    return not_existed_error if @organization.nil?
+
   end
 
   def find_posts_by_status
     @post_status = @posts.active
-    case params[:status]
+    case params[:post_status]
     when 'active'
       @post_status = @posts.active
     when 'inactive'
@@ -70,7 +63,7 @@ class PostsController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: user_params[:user_id])
   end
 
   def find_post
@@ -79,14 +72,18 @@ class PostsController < ApplicationController
 
   def find_valid_users
     @users = []
-    if params[:user_id].nil?
-      @users = @organization.users.all
-    else
+    if params[:user_id].present?
       @users << User.find_by(id: params[:user_id])
+    else
+      @users = @organization.users.all
     end
   end
 
   def post_params
     params.require(:post).permit(:content, :status, :user_id)
+  end
+
+  def user_params
+    params.require(:post).permit(:user_id)
   end
 end
