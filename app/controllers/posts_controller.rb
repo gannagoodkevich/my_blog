@@ -49,16 +49,16 @@ class PostsController < ApplicationController
   end
 
   def find_posts_by_status
-    @post_status = @posts.active
+    @post_set = @posts.active
     case params[:post_status]
     when 'active'
-      @post_status = @posts.active
+      @post_set = @posts.active
     when 'inactive'
-      @post_status = @posts.inactive
+      @post_set = @posts.inactive
     when 'under_review'
-      @post_status = @posts.under_review
+      @post_set = @posts.under_review
     when 'archived'
-      @post_status = @posts.archived
+      @post_set = @posts.archived
     end
   end
 
