@@ -3,7 +3,6 @@
 <% end %>
 
 <div class="row">
-
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
     <h1><%= @organization.title %>: <%= t 'models.post.create_pots' %></h1>
@@ -15,6 +14,6 @@
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
     <%= render partial: "form", locals: {my_url: organization_posts_path, post: @post, users: @users} %>
-</div>
+  </div>
   <div class="col-sm-3"></div>
 </div>

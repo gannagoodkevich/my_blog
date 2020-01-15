@@ -9,18 +9,8 @@ class Post < ApplicationRecord
   validates :status, inclusion: { in: %w[inactive under_review active archived],
                                 message: '%{value} is not a valid status' }
 
-
-  before_destroy :destroy, prepend: true
-
   scope :inactive, -> { where(status: 'inactive') }
   scope :under_review, -> { where(status: 'under_review') }
   scope :under_review_or_inactive, -> { where(:status => ['under_review', 'inactive']) }
   scope :with_active_users, ->(organization_id) { joins(:user).where(users: {organization_id: organization_id, active: true}) }
-
-  private
-
-  def destroy_before
-    puts 'Post object will be destroyed'
-    false
-  end
 end

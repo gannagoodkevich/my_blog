@@ -10,7 +10,8 @@
       <div class="col-sm-5"><h4><%= t 'models.post.status' %>: <%= post.status %></h4></div>
       <div class="col-sm-1"><%= button_to edit_organization_post_path(organization, post), method: "get", class: "btn btn-info" do%>
           <%= t 'models.post.edit' %>
-        <%end %></div>
+        <%end %>
+      </div>
     </div>
   <p></p>
 <% end %>
