@@ -53,11 +53,13 @@ posts_content = ['It is said that they live in “cnocs” (hollow hills, in Iri
 
 Post.create(content: 'MyPost', status: 'archived', user_id: 1)
 
+INDEX_OF_POST_TO_ROLLBACK = 4
+
 ActiveRecord::Base.transaction do
-  i = 1
+  index = 1
   posts_content.each do |post|
-    Post.create!(content: post, status: 'active', user_id: i)
-    i += 1
-    raise ActiveRecord::Rollback if i == 4
+    Post.create!(content: post, status: 'active', user_id: index)
+    index += 1
+    raise ActiveRecord::Rollback if index == INDEX_OF_POST_TO_ROLLBACK
   end
 end
