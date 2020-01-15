@@ -31,9 +31,9 @@ class User < ApplicationRecord
   end
 
   def confirm!
-    self.conf_token = nil
+    self.confirmation_token = nil
     self.confirmed_at = Time.now.utc
-    self.save!
+    save!
   end
 
   private
@@ -41,9 +41,9 @@ class User < ApplicationRecord
   def generate_confirmation_token
     loop do
       token = SecureRandom.urlsafe_base64
-      unless User.where(:conf_token => token).any?
-        self.conf_token = token
-        self.confirm_sent_at = Time.now.utc
+      unless User.where(:confirmation_token => token).any?
+        self.confirmation_token = token
+        self.confirmation_sent_at = Time.now.utc
         break
       end
     end

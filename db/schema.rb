@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_210916) do
+ActiveRecord::Schema.define(version: 2019_12_04_112022) do
 
   create_table "images", force: :cascade do |t|
     t.string "file_name"
@@ -36,29 +36,19 @@ ActiveRecord::Schema.define(version: 2020_01_11_210916) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_auths", force: :cascade do |t|
-    t.string "email"
-    t.string "encrypted_password", default: "", null: false
-    t.string "conf_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirm_sent_at"
-    t.index ["conf_token"], name: "index_user_auths_on_conf_token", unique: true
-    t.index ["email"], name: "index_user_auths_on_email", unique: true
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.integer "organization_id"
     t.integer "post_id"
     t.string "email"
     t.string "encrypted_password", default: "", null: false
-    t.string "conf_token"
+    t.string "confirmation_token"
     t.datetime "confirmed_at"
-    t.datetime "confirm_sent_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["conf_token"], name: "index_users_on_conf_token", unique: true
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
