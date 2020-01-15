@@ -13,7 +13,7 @@ class UnauthorizedController < ActionController::Metal
 
   def respond
     unless request.get?
-      flash.alert = I18n.t("hello")
+      flash.alert = I18n.t("error")
       puts "Error"
     end
 

@@ -28,7 +28,7 @@ module MyBlog
     end
 
     Warden::Manager.serialize_from_session do |id|
-      UserAuth.find_by_id(id)
+      User.find_by_id(id)
     end
 
     Rails.application.config.middleware.use Warden::Manager do |manager|

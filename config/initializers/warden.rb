@@ -1,13 +1,13 @@
 Warden::Strategies.add(:password) do
   def valid?
     return false if request.get?
-    user_data = params["user_auth"]
-    !(user_data["email"].blank? || user_data["password"].blank?)
+    params = request.params
+    !(params["email"].blank? || params["password"].blank?)
   end
 
   def authenticate!
-    user = UserAuth.find_by_email(params["user_auth"]["email"])
-    if user.nil? || user.confirmed_at.nil? || user.password != params["user_auth"]["password"]
+    user = User.find_by_email(params["email"])
+    if user.nil? || user.confirmed_at.nil? || user.password != params["password"]
       fail! :message => "strategies.password.failed"
     else
       success! user

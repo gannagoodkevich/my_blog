@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :find_organization
   before_action :find_user, only: %i[edit update show]
 
+
   def index
     @users = User.where(organization_id: params[:organization_id])
     if @users.nil?

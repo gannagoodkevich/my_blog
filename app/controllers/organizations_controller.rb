@@ -1,4 +1,6 @@
 class OrganizationsController < ApplicationController
+  skip_before_action :authenticate!
+
   def index
     @organizations = Organization.all.page(org_params[:page])
   end

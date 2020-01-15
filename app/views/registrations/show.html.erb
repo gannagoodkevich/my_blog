@@ -10,8 +10,9 @@
     </div>
     <div class="row">
       <div class="col-sm-2">
-        <%= bootstrap_form_with model: @user, url: "/user_auths/registrations", method: "post", local: true do |f| %>
+        <%= bootstrap_form_with(model: @user, url: "/organizations/#{params[:organization_id]}/users/registrations", method: "post", local: true) do |f| %>
           <%= f.email_field :email %>
+          <%= f.text_field :name %>
           <%= f.password_field :password %>
           <%= f.submit "Sign up", class: "btn btn-info" %>
         <% end %>

@@ -51,8 +51,15 @@ ActiveRecord::Schema.define(version: 2020_01_11_210916) do
     t.boolean "active"
     t.integer "organization_id"
     t.integer "post_id"
+    t.string "email"
+    t.string "encrypted_password", default: "", null: false
+    t.string "conf_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirm_sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["conf_token"], name: "index_users_on_conf_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

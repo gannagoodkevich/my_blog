@@ -3,7 +3,7 @@ class ConfirmationsController < ApplicationController
   before_action :redirect_if_token_empty!
 
   def show
-    @user = UserAuth.where(:conf_token => params[:token]).first
+    @user = User.where(:conf_token => params[:token]).first
 
     if @user.nil?
       flash.alert = t("confirmations.user.errors")
@@ -12,7 +12,7 @@ class ConfirmationsController < ApplicationController
       flash.notice = t("confirmations.user.confirmed")
       @user.confirm!
       warden.set_user(@user)
-      redirect_to user_auth_path(@user) and return
+      redirect_to :root
     end
   end
 
@@ -21,7 +21,7 @@ class ConfirmationsController < ApplicationController
   def redirect_if_token_empty!
     unless params.has_key?(:token)
       flash.alert = t("confirmations.token.empty")
-      redirect_to :root and return
+      redirect_to :root
     end
   end
 end
