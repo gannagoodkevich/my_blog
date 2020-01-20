@@ -23,6 +23,7 @@
          <tr>
            <td><%= link_to user.name, organization_user_path(@organization, user) %></td>
            <td> <%= user.active ? "active" : "inactive" %> </td>
+         </tr>
       <% end %>
     </table>
     <%= paginate @users, window: 2%>
