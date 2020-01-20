@@ -22,11 +22,13 @@
       <% @organizations.each do |org| %>
         <tr>
           <td><%= org.title %></td>
-          <td><%= button_to organization_posts_path(org), method: "get", class: "btn btn-info" do%>
+          <td>
+            <%= button_to organization_posts_path(org), method: "get", class: "btn btn-info" do%>
                 <%= t 'models.organization.posts' %>
               <%end %>
           </td>
-          <td><%= button_to organization_users_path(org), method: "get", class: "btn btn-info" do%>
+          <td>
+            <%= button_to organization_users_path(org), method: "get", class: "btn btn-info" do%>
               <%= t 'models.organization.users' %>
             <%end %>
           </td>

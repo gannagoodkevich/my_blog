@@ -16,7 +16,8 @@
     <%= label_tag(:archived, "archived") %>
   </p>
   <p>
-    <div class="col-sm-1"><%= button_to organization_posts_path(organization), method: "get", class: "btn btn-info" do%>
+    <div class="col-sm-1">
+      <%= button_to organization_posts_path(organization), method: "get", class: "btn btn-info" do%>
         <%= t 'models.organization.filter' %>
       <%end %>
     </div>

@@ -10,8 +10,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    return not_existed_error if @user.nil?
-
+    not_existed_error if @user.nil?
   end
 
   def create
@@ -36,8 +35,7 @@ class UsersController < ApplicationController
 
   def find_organization
     @organization = Organization.find_by(id: params[:organization_id])
-    return not_existed_error if @organization.nil?
-
+    not_existed_error if @organization.nil?
   end
 
   def find_user

@@ -15,8 +15,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    return not_existed_error if @post.nil?
-
+    not_existed_error if @post.nil?
   end
 
   def create
@@ -44,8 +43,7 @@ class PostsController < ApplicationController
 
   def find_organization
     @organization = Organization.find(params[:organization_id])
-    return not_existed_error if @organization.nil?
-
+    not_existed_error if @organization.nil?
   end
 
   def find_posts_by_status

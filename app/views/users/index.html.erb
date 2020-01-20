@@ -22,7 +22,7 @@
       <% @users.each do |user| %>
          <tr>
            <td><%= link_to user.name, organization_user_path(@organization, user) %></td>
-           <td> <%= user.active ? "active" : "inactive" %> </td>
+           <td><%= user.active ? "active" : "inactive" %></td>
          </tr>
       <% end %>
     </table>
@@ -34,7 +34,8 @@
   <div class="col-sm-4"></div>
   <div class="col-sm-8">
     <div class="col-sm-1"></div>
-    <div class="col-sm-11"><%= button_to new_organization_user_path(@organization), method: "get", class: "btn btn-info" do%>
+    <div class="col-sm-11">
+      <%= button_to new_organization_user_path(@organization), method: "get", class: "btn btn-info" do%>
         <%= t :'models.user.create_user' %>
       <%end %>
     </div>

@@ -8,7 +8,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = Organization.find_by(id: org_params)
+    @organization = Organization.find_by(id: params[:id])
     return not_existed_error if @organization.nil?
 
   end
@@ -17,9 +17,5 @@ class OrganizationsController < ApplicationController
 
   def org_update_params
     params.permit(:organization)
-  end
-
-  def org_params
-    params.permit(:id)
   end
 end
