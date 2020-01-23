@@ -28,6 +28,7 @@ group :development do
   gem 'rails_bootstrap_navbar'
   gem 'jquery-rails'
   gem 'jquery-turbolinks'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
 
 group :test do
