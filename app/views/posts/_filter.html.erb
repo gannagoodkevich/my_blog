@@ -1,23 +1,25 @@
 <%= form_tag(organization_posts_path(organization), method: "get") do %>
   <p>
-    <%= check_box_tag(:status, :active) %>
+    <%= check_box_tag(:post_status, :active) %>
     <%= label_tag(:active, "active") %>
   </p>
   <p>
-    <%= check_box_tag(:status, :inactive) %>
+    <%= check_box_tag(:post_status, :inactive) %>
     <%= label_tag(:inactive, "inactive") %>
   </p>
   <p>
-    <%= check_box_tag(:status, :under_review) %>
+    <%= check_box_tag(:post_status, :under_review) %>
     <%= label_tag(:under_review, "under_review") %>
   </p>
   <p>
-    <%= check_box_tag(:status, :archived) %>
+    <%= check_box_tag(:post_status, :archived) %>
     <%= label_tag(:archived, "archived") %>
   </p>
   <p>
-  <div class="col-sm-1"><%= button_to organization_posts_path(organization), method: "get", class: "btn btn-info" do%>
-      <%= t 'models.organization.filter' %>
-    <%end %></div>
+    <div class="col-sm-1">
+      <%= button_to organization_posts_path(organization), method: "get", class: "btn btn-info" do%>
+        <%= t 'models.organization.filter' %>
+      <%end %>
+    </div>
   </p>
 <%end%>

@@ -2,18 +2,17 @@ class OrganizationsController < ApplicationController
   skip_before_action :authenticate!
 
   def index
-    @organizations = Organization.all.page(org_params[:page])
+    @organizations = Organization.all.page(params[:page])
   end
 
   def update
-    @organization.update(org_params[:organization])
+    @organization.update(org_update_params)
   end
 
   def show
-    @organization = Organization.find_by(id: org_params[:id])
-    if @organization.nil?
-      render file: "#{Rails.root}/public/404.html", layout: false and return
-    end
+    @organization = Organization.find_by(id: params[:id])
+    return not_existed_error if @organization.nil?
+
   end
 
   def set_locale
@@ -27,7 +26,7 @@ class OrganizationsController < ApplicationController
 
   private
 
-  def org_params
-    params.permit(:page, :organization, :id, :locale)
+  def org_update_params
+    params.permit(:organization)
   end
 end

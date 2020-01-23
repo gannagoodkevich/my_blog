@@ -1,4 +1,4 @@
-<% post_status.each do |post| %>
+<% post_set.each do |post| %>
     <div class="row">
       <div class="col-sm-12" style="background-color:#63c0de"></div>
     </div>
@@ -8,10 +8,12 @@
     <div class="row">
       <div class="col-sm-6"><h4><%= t 'models.post.posted_by'%>: <%= link_to post.user.name, organization_user_path(organization, post.user)%></h4></div>
       <div class="col-sm-5"><h4><%= t 'models.post.status' %>: <%= post.status %></h4></div>
-      <div class="col-sm-1"><%= button_to edit_organization_post_path(organization, post), method: "get", class: "btn btn-info" do%>
+      <div class="col-sm-1">
+        <%= button_to edit_organization_post_path(organization, post), method: "get", class: "btn btn-info" do%>
           <%= t 'models.post.edit' %>
-        <%end %></div>
+        <%end %>
+      </div>
     </div>
   <p></p>
 <% end %>
-<%= paginate post_status, window: 2%>
+<%= paginate post_set, window: 2%>

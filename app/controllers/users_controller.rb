@@ -4,45 +4,40 @@ class UsersController < ApplicationController
 
   def index
     @users = User.where(organization_id: params[:organization_id])
-    if @users.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
-    end
+    return not_existed_error if @users.nil?
+
     @users = @users.page(params[:page])
   end
 
   def edit
-    if @user.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
-    end
+    not_existed_error if @user.nil?
   end
 
   def create
-    @organization.users.create!(user_params)
+    @organization = Organization.find(params.dig(:organization_id))
+    @organization.users.create!(attr_user)
+    UserMailer.with(organization: @organization, user: attr_user).new_user_mail.deliver_later
     redirect_to organization_users_path(@organization)
   end
 
   def update
-    if @user.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
-    end
+    return not_existed_error if @user.nil?
+
     @user.update!(button_params)
     redirect_to organization_user_path
   end
 
   def show
-    if @user.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
-    end
-    @posts = @user.posts.page(params.dig(:page))
+    return not_existed_error if @user.nil?
+
+    @posts = @user.posts.page(params[:page])
   end
 
   private
 
   def find_organization
     @organization = Organization.find_by(id: params[:organization_id])
-    if @organization.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
-    end
+    not_existed_error if @organization.nil?
   end
 
   def find_user

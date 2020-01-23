@@ -3,7 +3,6 @@
 <% end %>
 
 <div class="row">
-
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
     <h1><%= @organization.title %></h1>
@@ -20,45 +19,39 @@
     </div>
     <div class="col-sm-3">
       <div class="row">
-      <h3><%= t 'models.post.status' %>: <%= @user.active ? "active" : "inactive"%>
-      </h3>
-          <%=button_to organization_user_path, method: :put, class: "btn btn-info" , params: { button: {active: !@user.active} } do%>
-            <%= @user.active ? (t 'models.user.deactivate') : (t 'models.user.activate')%>
-          <%end %>
-          </p>
+        <h3><%= t 'models.post.status' %>: <%= @user.active ? "active" : "inactive"%></h3>
+        <%=button_to organization_user_path, method: :put, class: "btn btn-info" , params: { button: {active: !@user.active} } do%>
+          <%= @user.active ? (t 'models.user.deactivate') : (t 'models.user.activate')%>
+        <%end %>
       </div>
     </div>
   </div>
-  <div class="col-sm-3">
-  </div>
-
-</div>
-
-<div class="row">
   <div class="col-sm-3"></div>
-<div class="col-sm-6">
-  <h3><%= t 'models.organization.posts' %>: </h3></div>
 </div>
 
 <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <%= render partial: "posts/post", locals: {post_status: @posts, organization: @organization} %>
+    <h3><%= t 'models.organization.posts' %>: </h3>
   </div>
-  <div class="col-sm-3">
-  </div>
-
 </div>
 
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <%= render partial: "posts/post", locals: {post_set: @posts, organization: @organization} %>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
 
 <div class="row">
   <div class="col-sm-5"></div>
-
   <div class="col-sm-7">
     <div class="col-sm-1"></div>
-    <div class="col-sm-11"><%= button_to new_organization_post_path(@organization), method: "get", class: "btn btn-info", params: [user_id: @user.id] do%>
+    <div class="col-sm-11">
+      <%= button_to new_organization_post_path(@organization), method: "get", class: "btn btn-info", params: [user_id: @user.id] do%>
         <%= t 'models.post.create_pots' %>
-      <%end %></div>
+      <%end %>
+    </div>
   </div>
-</div>
 </div>

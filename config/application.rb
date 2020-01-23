@@ -18,7 +18,6 @@ module MyBlog
     config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :en
 
-
     Warden::Manager.serialize_into_session do |user|
       user.id
     end
