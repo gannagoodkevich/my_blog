@@ -28,6 +28,7 @@ group :development do
   gem 'rails_bootstrap_navbar'
   gem 'jquery-rails'
   gem 'jquery-turbolinks'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
 
 group :test do
@@ -44,5 +45,4 @@ group :production do
   gem 'pg', '1.1.4'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
