@@ -17,5 +17,7 @@ module MyBlog
 
     config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :en
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end
