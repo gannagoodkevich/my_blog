@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :organization_id
       t.integer :post_id
       t.string :email
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :encrypted_password, null: false, default: ""
 
       t.string :confirmation_token
       t.datetime :confirmed_at
@@ -15,7 +15,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :users, :email, :unique => true
-    add_index :users, :confirmation_token, :unique => true
+    add_index :users, :email, unique: true
+    add_index :users, :confirmation_token, unique: true
   end
 end

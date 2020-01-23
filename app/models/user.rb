@@ -9,8 +9,8 @@ class User < ApplicationRecord
   has_many :posts
   has_many :images, as: :imageable
 
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :email, :presence => true
+  validates :name, presence: true, length: {maximum: 50}
+  validates :email, presence: true
 
   before_create :generate_confirmation_token
 
@@ -41,7 +41,7 @@ class User < ApplicationRecord
   def generate_confirmation_token
     loop do
       token = SecureRandom.urlsafe_base64
-      unless User.where(:confirmation_token => token).any?
+      unless User.where(confirmation_token: token).any?
         self.confirmation_token = token
         self.confirmation_sent_at = Time.now.utc
         break

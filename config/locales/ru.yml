@@ -28,7 +28,7 @@ ru:
       errors: "Ошибка подтверждения, попробуйте еще раз"
     token:
       empty: "Ошибка: токен отсутсвтует"
-  registartions:
+  registrations:
     user:
       success: "Вы были успешно зарегестрированы"
   unauthorized:

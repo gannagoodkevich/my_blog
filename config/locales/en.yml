@@ -28,7 +28,7 @@ en:
       errors: "Confirmation error, try again"
     token:
       empty: "Empty token error"
-  registartions:
+  registrations:
     user:
       success: "You successfully have registered"
   unauthorized:

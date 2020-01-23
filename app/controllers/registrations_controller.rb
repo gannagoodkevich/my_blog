@@ -21,7 +21,7 @@ class RegistrationsController < ApplicationController
   def find_organization
     @organization = Organization.find_by(id: params[:organization_id])
     if @organization.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false) && (return)
+      render(file: "#{Rails.root}/public/404.html", layout: false)
     end
   end
 end
