@@ -8,7 +8,10 @@ gem 'webpacker',  '4.0.7'
 gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.4', require: false
-
+gem 'bootswatch-rails'
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
@@ -20,6 +23,11 @@ group :development do
   gem 'listen',                '3.1.5'
   gem 'spring',                '2.1.0'
   gem 'spring-watcher-listen', '2.0.1'
+  gem 'simple_form'
+  gem 'kaminari'
+  gem 'rails_bootstrap_navbar'
+  gem 'jquery-rails'
+  gem 'jquery-turbolinks'
 end
 
 group :test do
@@ -36,5 +44,4 @@ group :production do
   gem 'pg', '1.1.4'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

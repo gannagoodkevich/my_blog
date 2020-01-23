@@ -1,0 +1,41 @@
+<% content_for :title do %>
+  Organizations
+<% end %>
+
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <h1><%= t 'models.organization.lists' %></h1>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+<div class="row"><p></p></div>
+<div class="row">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6">
+    <table class="table table-striped">
+      <tr>
+        <th><%= t 'models.organization.title' %></th>
+        <th><%= t 'models.organization.posts' %></th>
+        <th><%= t 'models.organization.users' %></th>
+      </tr>
+      <% @organizations.each do |org| %>
+        <tr>
+          <td><%= org.title %></td>
+          <td>
+            <%= button_to organization_posts_path(org), method: "get", class: "btn btn-info" do%>
+                <%= t 'models.organization.posts' %>
+              <%end %>
+          </td>
+          <td>
+            <%= button_to organization_users_path(org), method: "get", class: "btn btn-info" do%>
+              <%= t 'models.organization.users' %>
+            <%end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @organizations, window: 2%>
+  </div>
+  <div class="col-sm-3"></div>
+</div>

@@ -1,0 +1,24 @@
+ru:
+  models:
+    main:
+      web_site: "МойСайт"
+      organizations: "Организации"
+    organization:
+      title: "Название"
+      posts: "Посты"
+      users: "Пользователи"
+      lists: "Список организаций"
+      filter: "Фильтровать"
+    post:
+      status: "Статус"
+      create_pots: "Создать пост"
+      edit: "Редактировать"
+      posted_by: "Автор"
+      content: "Текст"
+      update_post: "Редактировать пост"
+      destroy: "Удалить"
+    user:
+      deactivate: "Деактивировать"
+      activate: "Активировать"
+      create_user: "Создать пользователя"
+      name: "Имя"
