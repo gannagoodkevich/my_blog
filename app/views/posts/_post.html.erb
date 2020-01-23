@@ -1,16 +1,4 @@
-<% post_status.each do |post| %>
-<%if Post.active.include? post %>
-  <% @status = :active%>
-<%end %>
-<%if Post.inactive.include? post%>
-  <% @status = :inactive%>
-<%end %>
-<%if Post.under_review.include? post%>
-  <% @status = :under_review%>
-<%end %>
-<%if Post.archived.include? post%>
-  <% @status = :archived%>
-<%end %>
+<% post_set.each do |post| %>
     <div class="row">
       <div class="col-sm-12" style="background-color:#63c0de"></div>
     </div>
@@ -18,12 +6,14 @@
       <div class="col-sm-12"><h3><%= post.content %></h3></div>
     </div>
     <div class="row">
-      <div class="col-sm-6"><h4><%= t :posted_by%>: <%= link_to post.user.name, organization_user_path(Organization.find(params[:organization_id]), post.user)%></h4></div>
-      <div class="col-sm-5"><h4><%= t :status %>: <%= @status %></h4></div>
-      <div class="col-sm-1"><%= button_to edit_organization_post_path(Organization.find(params[:organization_id]), post), method: "get", class: "btn btn-info" do%>
-          <%= t :edit %>
-        <%end %></div>
+      <div class="col-sm-6"><h4><%= t 'models.post.posted_by'%>: <%= link_to post.user.name, organization_user_path(organization, post.user)%></h4></div>
+      <div class="col-sm-5"><h4><%= t 'models.post.status' %>: <%= post.status %></h4></div>
+      <div class="col-sm-1">
+        <%= button_to edit_organization_post_path(organization, post), method: "get", class: "btn btn-info" do%>
+          <%= t 'models.post.edit' %>
+        <%end %>
+      </div>
     </div>
   <p></p>
 <% end %>
-<%= paginate post_status, window: 2%>
+<%= paginate post_set, window: 2%>

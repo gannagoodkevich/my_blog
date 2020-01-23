@@ -1,12 +1,11 @@
 <% content_for :title do %>
-  <%= Organization.find(params[:organization_id]).title %>
+  <%= @organization.title %>
 <% end %>
 
 <div class="row">
-
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1><%=Organization.find(params[:organization_id]).title %>: <%= t :create_user %></h1>
+    <h1><%=@organization.title %>: <%= t 'models.user.create_user' %></h1>
     <div class="col-sm-12" style="background-color:#63c0de"></div>
   </div>
   <div class="col-sm-3"></div>
@@ -16,19 +15,6 @@
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
     <%= render 'form' %>
-
   </div>
-  <div class="col-sm-3">
-
-  </div>
-
-</div>
-<div class="row">
-  <div class="col-sm-5"></div>
-
-  <div class="col-sm-7">
-    <div class="col-sm-1"></div>
-
-  </div>
-</div>
+  <div class="col-sm-3"></div>
 </div>

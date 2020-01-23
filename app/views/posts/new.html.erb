@@ -1,15 +1,11 @@
 <% content_for :title do %>
-  <%= Organization.find(params[:organization_id]).title %>
+  <%= @organization.title %>
 <% end %>
 
-<% @organization = Organization.find(params[:organization_id]) %>
-<% @users = [] %>
-
 <div class="row">
-
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-    <h1><%= @organization.title %>: <%= t :create_pots %></h1>
+    <h1><%= @organization.title %>: <%= t 'models.post.create_pots' %></h1>
   </div>
   <div class="col-sm-3"></div>
 </div>
@@ -17,16 +13,7 @@
 <div class="row">
   <div class="col-sm-3"></div>
   <div class="col-sm-6">
-  <% if request.referrer.split("/")[-2]=="users" %>
-    <%@user_id  = request.referrer.split("/")[-1]%>
-    <% @users << User.find(@user_id)%>
-  <% else %>
-    <% @users = @organization.users.all%>
-  <%end %>
     <%= render partial: "form", locals: {my_url: organization_posts_path, post: @post, users: @users} %>
-</div>
+  </div>
   <div class="col-sm-3"></div>
 </div>
-
-
-
