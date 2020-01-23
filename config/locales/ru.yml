@@ -22,3 +22,17 @@ ru:
       activate: "Активировать"
       create_user: "Создать пользователя"
       name: "Имя"
+  confirmations:
+    user:
+      confirmed: "Подтверждено"
+      errors: "Ошибка подтверждения, попробуйте еще раз"
+    token:
+      empty: "Ошибка: токен отсутсвтует"
+  registrations:
+    user:
+      success: "Вы были успешно зарегестрированы"
+  unauthorized:
+    error: "Вы не авторизовались"
+  strategies:
+    password:
+      failed: "Вы ввели неправильной пароль или почту, попробуйте еще раз"

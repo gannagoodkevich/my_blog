@@ -22,3 +22,17 @@ en:
       activate: "Activate"
       create_user: "Create user"
       name: "Name"
+  confirmations:
+    user:
+      confirmed: "Confirmed"
+      errors: "Confirmation error, try again"
+    token:
+      empty: "Empty token error"
+  registrations:
+    user:
+      success: "You successfully have registered"
+  unauthorized:
+    error: "You haven't been authorized"
+  strategies:
+    password:
+      failed: "You entered wrong password or email, try again"
