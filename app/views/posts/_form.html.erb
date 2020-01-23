@@ -1,15 +1,9 @@
 <%= bootstrap_form_with model: post, url: my_url, local: true do |form| %>
-  <% name = @default_name%>
-  <%if post.user%>
-    <% name = post.user.id%>
-  <%end %>
-  <% status = @default_status%>
-  <%if post.status%>
-    <% status = post.status %>
-  <% end %>
+  <% name = post.user ? post.user.id : users.first.name%>
+  <% status = post.nil? ? users.first.posts.first.status : post.status%>
 
   <p>
-    <%= form.collection_select(:user_id, users, :id, :name, label: t('models.user.name'), :selected => name)%>
+    <%= form.collection_select(:user_id, users, :id, :name, label: t('models.user.name'), :selected => name) %>
   </p>
 
   <p>
