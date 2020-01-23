@@ -11,24 +11,34 @@
 
   <body>
     <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="http://localhost:3000/en/organizations"><%= t 'models.main.web_site' %></a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t 'models.main.organizations' %>
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <% Organization.all.each do |organization| %>
-                <li><a href=<%="http://localhost:3000/#{locale}/organizations/#{organization.id}/posts"%>><%= organization.title %></a></li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-        <button class="btn btn-info navbar-btn"><%= link_to 'EN', "http://localhost:3000#{request.env['PATH_INFO'].gsub("ru", "en")}", class: "navbar-link", style: "color:#ffffff"%>/<%= link_to 'RU', "http://localhost:3000#{request.env['PATH_INFO'].gsub("en", "ru")}", class: "navbar-link", style: "color:#ffffff"%></button>
-      </div>
-    </nav>
-    <%= yield %>
+ <div class="container-fluid">
+   <div class="navbar-header">
+     <a class="navbar-brand" href="http://localhost:3000/en/organizations"><%= t 'models.main.web_site' %></a>
+   </div>
+   <ul class="nav navbar-nav">
+     <li class="dropdown">
+       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= t 'models.main.organizations' %>
+         <span class="caret"></span></a>
+       <ul class="dropdown-menu">
+         <% Organization.all.each do |organization| %>
+           <li><a href=<%="http://localhost:3000/#{locale}/organizations/#{organization.id}/posts"%>><%= organization.title %></a></li>
+         <% end %>
+       </ul>
+     </li>
+   </ul>
+   <button class="btn btn-info navbar-btn"><%= link_to 'EN', "http://localhost:3000#{request.env['PATH_INFO'].gsub("ru", "en")}", class: "navbar-link", style: "color:#ffffff"%>/<%= link_to 'RU', "http://localhost:3000#{request.env['PATH_INFO'].gsub("en", "ru")}", class: "navbar-link", style: "color:#ffffff"%></button>
+   <%= link_to('Logout', "/organizations/#{params[:organization_id]}/users/sessions", method: :delete) %>
+   <%= link_to('Login', "/organizations/#{params[:organization_id]}/users/sessions", method: :get) %>
+   <%= link_to('Sign up', "/organizations/#{params[:organization_id]}/users/registrations/", method: :get) %>
+
+ </div>
+</nav>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+     <% end %>
+  <%= yield %>
   </body>
 </html>

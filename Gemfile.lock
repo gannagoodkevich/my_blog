@@ -76,6 +76,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.7.3)
       execjs
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -296,6 +297,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     web-console (4.0.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -320,6 +323,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootsnap (= 1.4.4)
   bootstrap-sass
   bootstrap_form
@@ -353,6 +357,7 @@ DEPENDENCIES
   sqlite3 (= 1.4.1)
   turbolinks (= 5.2.0)
   tzinfo-data
+  warden
   web-console (= 4.0.1)
   webdrivers (= 4.1.2)
   webpacker (= 4.0.7)
