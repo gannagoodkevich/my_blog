@@ -18,6 +18,7 @@ module MyBlog
     config.i18n.available_locales = [:en, :ru]
     config.i18n.default_locale = :en
 
+
     Warden::Manager.serialize_into_session do |user|
       user.id
     end
@@ -30,5 +31,7 @@ module MyBlog
       manager.default_strategies :password
       manager.failure_app = UnauthorizedController
     end
+
+    config.active_job.queue_adapter = :sidekiq
   end
 end

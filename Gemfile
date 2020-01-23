@@ -16,6 +16,7 @@ gem 'rails-i18n'
 group :development, :test do
   gem 'sqlite3', '1.4.1'
   gem 'byebug',  '11.0.1', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
 end
 
 group :development do
@@ -31,6 +32,9 @@ group :development do
   gem 'warden'
   gem 'bcrypt'
   gem 'sidekiq'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem "sidekiq-cron", "~> 1.1"
+  gem 'sidekiq-scheduler'
 end
 
 group :test do

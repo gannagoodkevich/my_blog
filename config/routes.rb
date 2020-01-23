@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :organizations do
@@ -13,4 +15,6 @@ Rails.application.routes.draw do
   end
 
   root 'organizations#welcome'
+
+  mount Sidekiq::Web => '/sidekiq'
 end

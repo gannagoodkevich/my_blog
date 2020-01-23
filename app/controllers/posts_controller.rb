@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 
     @user.posts.create!(post_params)
     redirect_to organization_posts_path(@organization)
+    ErrorJob.perform_later
   end
 
   def update
