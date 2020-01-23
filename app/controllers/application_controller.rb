@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
 
+  def not_existed_error
+    render(file: "#{Rails.root}/public/404.html", layout: false)
+  end
+
   private
 
   def default_url_options
