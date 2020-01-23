@@ -21,7 +21,7 @@ class RegistrationsController < ApplicationController
   def find_organization
     @organization = Organization.find_by(id: params[:organization_id])
     if @organization.nil?
-      render(file: "#{Rails.root}/public/404.html", layout: false)
+      not_existed_error
     end
   end
 end
